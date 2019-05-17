@@ -14,7 +14,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    @section('style')@show
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
    @include('common.header')
@@ -353,10 +353,10 @@
       </div>
     </aside>
     </div>
-   @include('common.footer')
-     <!-- Scripts -->
-     <script src="{{ asset('js/app.js') }}"></script>
-
+  @include('common.footer')
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
+  @yield('scripts')
   {{-- <script>
         $('#ui-view').ajaxLoad();
         $(document).ajaxComplete(function() {
