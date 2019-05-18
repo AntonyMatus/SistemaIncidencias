@@ -52,7 +52,7 @@
                         <div class="stat-content">
                             <div class="text-left dib">
                                 <div class="stat-text"><span class="count">{{$item['titulo']}}</span></div>
-                                <div class="stat-heading">{{$item['descripcion']}}</div>
+                                <div class="stat-heading">{{str_limit($item['descripcion'], 36)}}</div>
                             </div>
                         </div>
                     </div>

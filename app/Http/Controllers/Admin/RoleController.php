@@ -1,9 +1,9 @@
 <?php
 
-namespace Sislab\Http\Controllers\Admin;
+namespace Laxcore\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Sislab\Http\Controllers\Controller;
+use Laxcore\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
@@ -15,25 +15,10 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-        // $this->middleware('permission:role-list');
-        // $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function getIndex(Request $request)
     {
-        $roles = Role::orderBy('id', 'DESC')->paginate(5);
-        return view('roles.index', compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 
 
@@ -138,7 +123,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getEliminar($id)
+    public function postEliminar($id)
     {
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')

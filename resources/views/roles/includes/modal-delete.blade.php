@@ -8,7 +8,7 @@
                     <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
                 </div>
                 <div class="modal-body">
-                    {{ csrf_field() }} {{ method_field('DELETE') }}
+                    @csrf @method('DELETE')
                     <p class="text-center">Are You Sure Want To Delete ?</p>
                 </div>
                 <div class="modal-footer">
@@ -26,7 +26,7 @@
     <script>
         function deleteData(id){
             var id = id;
-            var url = '{{ route("users.eliminar", ":id") }}';
+            var url = '{{ route("roles.eliminar", ":id") }}';
             url = url.replace(':id', id);
             $("#deleteForm").attr('action', url);
         }

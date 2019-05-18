@@ -17,6 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
+
     Route::get('/dashboard', function () {
         return view('admin.home');
     })->name('dashboard');
@@ -38,6 +39,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('agregar',  'RoleController@postAgregar')->name('roles.agregar');
         Route::get('editar/{id?}', 'RoleController@getEditar')->name('roles.editar');
         Route::post('editar/{id?}','RoleController@postEditar')->name('roles.editar');
-        Route::delete('eliminar/{id?}','RoleController@getEliminar')->name('roles.eliminar');
+        Route::post('eliminar/{id?}','RoleController@postEliminar')->name('roles.eliminar');
     });
 });

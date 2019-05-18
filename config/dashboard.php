@@ -4,11 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | El titulo de mi web
+    | Módulos del Sistema
     |--------------------------------------------------------------------------
     */
 
     'modulos' => [
+        #nextElement
         [
             'titulo' => 'Usuarios',
             'grupo_ruta' => 'usuarios',
@@ -20,32 +21,32 @@ return [
                 [
                     'ruta' => 'usuarios.index',
                     'label' => 'Lista de usuarios',
-                    'icon' => 'fa fa-anchor'
+                    'icon' => 'fa fa-list'
                 ],
                 [
                     'ruta' => 'usuarios.agregar',
                     'label' => 'Agregar usuario',
-                    'icon' => 'fa fa-anchor'
+                    'icon' => 'fa fa-plus'
                 ]
             ]
         ],
         [
             'titulo' => 'Roles',
             'grupo_ruta' => 'roles',
-            'icon' => 'fa fa-user-plus',
+            'icon' => 'fa fa-address-card-o',
             'is_link' => false,
             'item_in_submenu' => true,
-            'descripcion' => 'Módulo de Administración de Roles',
+            'descripcion' => 'Módulo de Administración de Roles y Permisos',
             'submenu' => [
                 [
                     'ruta' => 'roles.index',
-                    'label' => 'Lista de usuarios',
-                    'icon' => 'fa fa-anchor'
+                    'label' => 'Lista de Roles',
+                    'icon' => 'fa fa-list'
                 ],
                 [
                     'ruta' => 'roles.agregar',
-                    'label' => 'Agregar usuario',
-                    'icon' => 'fa fa-anchor'
+                    'label' => 'Agregar Rol',
+                    'icon' => 'fa fa-plus'
                 ]
             ]
         ],
