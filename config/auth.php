@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Laxcore\User::class,
+            'model' => Xhunter\Models\User::class,
         ],
 
         // 'users' => [

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laxcore;
+namespace Xhunter\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

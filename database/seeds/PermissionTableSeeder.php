@@ -51,7 +51,7 @@ class PermissionTableSeeder extends Seeder
         $role->givePermissionTo(Permission::all());
 
         // Creación del usuario
-        $user = Laxcore\User::create([
+        $user = Xhunter\Models\User::create([
             'name' => 'fister',
             'email' => 'admin@dev.net',
             'password' => bcrypt('secret')

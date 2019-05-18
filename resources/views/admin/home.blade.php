@@ -41,24 +41,26 @@
     $elementos = Config::get('dashboard.modulos');
     @endphp
     <div class="row">
-    @foreach ($elementos as $item)
-        <div class="col-lg-3 col-md-6">
-            <a class="card" style="text-decoration: none;" href="{{ route($item['grupo_ruta'].'.index') }}">
-                <div class="card-body">
-                    <div class="stat-widget-five">
-                        <div class="stat-icon dib flat-color-1">
-                            <i class="{{$item['icon']}}"></i>
-                        </div>
-                        <div class="stat-content">
-                            <div class="text-left dib">
-                                <div class="stat-text"><span class="count">{{$item['titulo']}}</span></div>
-                                <div class="stat-heading">{{str_limit($item['descripcion'], 36)}}</div>
+        @foreach ($elementos as $item)
+            @can($item['grupo_ruta'].'.index')
+                <div class="col-lg-3 col-md-6">
+                    <a class="card" style="text-decoration: none;" href="{{ route($item['grupo_ruta'].'.index') }}">
+                        <div class="card-body">
+                            <div class="stat-widget-five">
+                                <div class="stat-icon dib flat-color-1">
+                                    <i class="{{$item['icon']}}"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="text-left dib">
+                                        <div class="stat-text"><span class="count">{{$item['titulo']}}</span></div>
+                                        <div class="stat-heading">{{str_limit($item['descripcion'], 36)}}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-    @endforeach
+            @endcan
+        @endforeach
     </div>
 @endsection

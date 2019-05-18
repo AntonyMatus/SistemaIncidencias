@@ -4,7 +4,7 @@ namespace Laxcore\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Laxcore\Http\Controllers\Controller;
-use Laxcore\User;
+use Xhunter\Models\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;

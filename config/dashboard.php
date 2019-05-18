@@ -50,6 +50,25 @@ return [
                 ]
             ]
         ],
+        [
+            'titulo' => 'Productos',
+            'grupo_ruta' => 'productos',
+            'icon' => 'fa fa-shopping-cart',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración de Productos',
+            'submenu' => [
+                [
+                    'ruta' => 'productos.index',
+                    'label' => 'Lista de Roles',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'productos.agregar',
+                    'label' => 'Agregar Rol',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
     ]
-
 ];

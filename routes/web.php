@@ -41,4 +41,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('editar/{id?}','RoleController@postEditar')->name('roles.editar');
         Route::post('eliminar/{id?}','RoleController@postEliminar')->name('roles.eliminar');
     });
+
+    Route::group(['prefix' => 'productos'], function () {
+        Route::get('', 'ProductoController@getIndex')->name('productos.index');
+        Route::get('ver/{id}', 'ProductoController@getVer')->name('productos.ver');
+        Route::get('agregar', 'ProductoController@getAgregar')->name('productos.agregar');
+        Route::post('agregar',  'ProductoController@postAgregar')->name('productos.agregar');
+        Route::get('editar/{id?}', 'ProductoController@getEditar')->name('productos.editar');
+        Route::post('editar/{id?}','ProductoController@postEditar')->name('productos.editar');
+        Route::post('eliminar/{id?}','ProductoController@getEliminar')->name('productos.eliminar');
+    });
 });

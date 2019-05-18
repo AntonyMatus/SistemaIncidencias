@@ -2,7 +2,7 @@
 
 namespace Laxcore\Http\Controllers\Auth;
 
-use Laxcore\User;
+use Xhunter\Models\User;
 use Laxcore\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

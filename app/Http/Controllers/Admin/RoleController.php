@@ -4,6 +4,7 @@ namespace Laxcore\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Laxcore\Http\Controllers\Controller;
+use Illuminate\Support\Collection as Collection;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
@@ -29,6 +30,24 @@ class RoleController extends Controller
      */
     public function getAgregar()
     {
+        $routes = [];
+        foreach (\Route::getRoutes()->getIterator() as $route){
+            if (strpos($route->uri, 'admin') !== false){
+                $r = explode('/', $route->uri);
+                $routes[] =  $r[1];
+            }
+        }
+        $routes = array_diff($routes, array('dashboard', 'usuarios', 'roles'));
+        $result = Collection::make(array_unique($routes));
+        $result->each(function ($item, $key) {
+            // crear permisos para cada elemento de colección
+            Permission::firstOrCreate(['name' => $item. '.index', 'display_name' => 'Listar '. ucfirst($item)]);
+            Permission::firstOrCreate(['name' => $item. '.ver', 'display_name' => 'Ver '. ucfirst($item)]);
+            Permission::firstOrCreate(['name' => $item. '.crear', 'display_name' => 'Crear '. ucfirst($item)]);
+            Permission::firstOrCreate(['name' => $item. '.editar', 'display_name' => 'Editar '. ucfirst($item)]);
+            Permission::firstOrCreate(['name' => $item. '.eliminar', 'display_name' => 'Eliminar '. ucfirst($item)]);
+        });
+
         $permission = Permission::get();
         return view('roles.agregar', compact('permission'));
     }

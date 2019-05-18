@@ -26,32 +26,31 @@
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>
   </div>
   <main class="main">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">Home</li>
+      <li class="breadcrumb-item">
+        <a href="#">Admin</a>
+      </li>
+      <li class="breadcrumb-item active">Dashboard</li>
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</li>
-    <li class="breadcrumb-item">
-      <a href="#">Admin</a>
-    </li>
-    <li class="breadcrumb-item active">Dashboard</li>
-
-    <li class="breadcrumb-menu d-md-down-none">
-      <div class="btn-group" role="group" aria-label="Button group">
-        <a class="btn" href="#">
-          <i class="icon-speech"></i>
-        </a>
-        <a class="btn" href="./">
-          <i class="icon-graph"></i> &nbsp;Dashboard</a>
-        <a class="btn" href="#">
-          <i class="icon-settings"></i> &nbsp;Settings</a>
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+          <a class="btn" href="#">
+            <i class="icon-speech"></i>
+          </a>
+          <a class="btn" href="./">
+            <i class="icon-graph"></i> &nbsp;Dashboard</a>
+          <a class="btn" href="#">
+            <i class="icon-settings"></i> &nbsp;Settings</a>
+        </div>
+      </li>
+    </ol>
+    <div class="container-fluid">
+      @include('vendor.bs4-alert.template')
+      <div id="ui-view">
+        @yield('content')
       </div>
-    </li>
-  </ol>
-  <div class="container-fluid">
-    @include('vendor.bs4-alert.template')
-    <div id="ui-view">
-      @yield('content')
     </div>
-  </div>
   </main>
   <aside class="aside-menu">
     <ul class="nav nav-tabs" role="tablist">
@@ -357,8 +356,8 @@
   @include('common.footer')
   <!-- Scripts -->
   <section>
-    {!! Toastr::render() !!}
     <script src="{{ asset('js/app.js') }}"></script>
+    {!! Toastr::render() !!}
     @yield('scripts')
   </section>
 </body>

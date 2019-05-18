@@ -1,8 +1,8 @@
 <?php
 
-namespace Sislab\Http\Controllers\Admin;
+namespace Laxcore\Http\Controllers\Admin;
 
-use Sislab\Http\Controllers\Controller;
+use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Productos\ProductoRepository;
 use Xhunter\Services\ProductosService;
 use TJGazel\Toastr\Facades\Toastr;
@@ -13,11 +13,11 @@ class ProductoController extends Controller
 
     public function __construct(ProductoRepository $repository, ProductosService $service)
     {
-        $this->middleware('permission:Listar productos');
-        $this->middleware('permission:Ver productos', ['only' => ['getVer']]);
-        $this->middleware('permission:Crear productos', ['only' => ['getAgregar', 'postAgregar']]);
-        $this->middleware('permission:Editar productos', ['only' => ['getEditar', 'postEditar']]);
-        $this->middleware('permission:Eliminar productos', ['only' => ['getEliminar']]);
+        $this->middleware('permission:productos.index');
+        $this->middleware('permission:productos.ver', ['only' => ['getVer']]);
+        $this->middleware('permission:productos.crear', ['only' => ['getAgregar', 'postAgregar']]);
+        $this->middleware('permission:productos.editar', ['only' => ['getEditar', 'postEditar']]);
+        $this->middleware('permission:productos.eliminar', ['only' => ['getEliminar']]);
         $this->repository = $repository;
         $this->service = $service;
     }
@@ -76,7 +76,7 @@ class ProductoController extends Controller
         $response = $this->service->update($id, $data);
 
         if ($response) {
-            Toastr::success(_i('Registro actualizado'));
+            Toastr::success(__('Registro actualizado'));
         } else {
             Toastr::error($this->service->getMessages()->first());
             return redirect()->route('productos.editar', [
@@ -91,7 +91,7 @@ class ProductoController extends Controller
     {
         $deleted = $this->service->delete($id);
         if ($deleted == false) {
-            Toastr::error(_i($this->service->getMessages()->first('errors')));
+            Toastr::error(__($this->service->getMessages()->first('errors')));
         }
     }
 }

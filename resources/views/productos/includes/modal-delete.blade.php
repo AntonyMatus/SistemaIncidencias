@@ -26,7 +26,7 @@
     <script>
         function deleteData(id){
             var id = id;
-            var url = '{{ route("roles.eliminar", ":id") }}';
+            var url = '{{ route("productos.eliminar", ":id") }}';
             url = url.replace(':id', id);
             $("#deleteForm").attr('action', url);
         }
