@@ -24,39 +24,39 @@
     </ul>
   </div>
 @endif
-
-<form action="{{ route('usuarios.editar', ['id' => $user->id]) }}" class="form-horizontal" id="form-editar" method="post" accept-charset="utf-8">
-    @csrf
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" value="{{old('name', $user->name)}}">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Email:</strong>
-                <input type="email" name="email" id="email" placeholder="correo electrónico" class="form-control" value="{{old('email', $user->email)}}">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Role:</strong>
-                @foreach($roles as $value)
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="{{ $value }}"
-                    value="{{$value}}" name="roles[]"
-                    {{ in_array($value, $userRole) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="{{ $value }}">{{ $value }}</label>
+<div class="col-md-6 offset-md-3">
+    <form action="{{ route('usuarios.editar', ['id' => $user->id]) }}" class="form-horizontal" id="form-editar" method="post" accept-charset="utf-8">
+        @csrf
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Name:</strong>
+                    <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" value="{{old('name', $user->name)}}">
                 </div>
-                @endforeach
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Email:</strong>
+                    <input type="email" name="email" id="email" placeholder="correo electrónico" class="form-control" value="{{old('email', $user->email)}}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Role:</strong>
+                    @foreach($roles as $value)
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ $value }}"
+                        value="{{$value}}" name="roles[]"
+                        {{ in_array($value, $userRole) ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="{{ $value }}">{{ $value }}</label>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
-</form>
-
+    </form>
+</div>
 @endsection

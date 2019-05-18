@@ -29,6 +29,26 @@ return [
                 ]
             ]
         ],
+        [
+            'titulo' => 'Roles',
+            'grupo_ruta' => 'roles',
+            'icon' => 'fa fa-user-plus',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración de Roles',
+            'submenu' => [
+                [
+                    'ruta' => 'roles.index',
+                    'label' => 'Lista de usuarios',
+                    'icon' => 'fa fa-anchor'
+                ],
+                [
+                    'ruta' => 'roles.agregar',
+                    'label' => 'Agregar usuario',
+                    'icon' => 'fa fa-anchor'
+                ]
+            ]
+        ],
     ]
 
 ];

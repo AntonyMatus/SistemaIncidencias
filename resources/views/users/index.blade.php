@@ -30,14 +30,14 @@
 <table id="usuarios-table" class="table table-striped table-bordered" style="width:100%">
   <thead>
     <th>No</th>
-    <th>Name</th>
-    <th>Email</th>
+    <th>Nombre</th>
+    <th>Correo</th>
     <th>Roles</th>
-    <th width="280px">Action</th>
+    <th width="280px">Acciones</th>
   </thead>
   <tbody>
     @foreach ($data as $key => $user)
-    <tr>
+    <tr id="usuario_id_{{ $user->id }}">
       <td>{{ ++$key }}</td>
       <td>{{ $user->name }}</td>
       <td>{{ $user->email }}</td>
@@ -50,13 +50,12 @@
       </td>
       <td>
         <a class="btn btn-outline-info" href="{{ route('usuarios.ver',$user->id) }}">
-          <i class="fa fas fa-eye fa-eye-alt"></i>ver
+          <span class="fa fas fa-eye fa-eye-alt"></span>Ver
         </a>
         <a class="btn btn-outline-primary" href="{{ route('usuarios.editar',$user->id) }}">
           <span class="fa fa-edit"></span>Editar
         </a>
-        <a data-toggle="modal" onclick="deleteData({{$user->id}})" data-target="#DeleteModal"
-           class="btn btn-outline-danger">
+        <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$user->id}}">
           <span class="fa fa-trash-o"></span>Eliminar
         </a>
       </td>
@@ -64,9 +63,6 @@
     @endforeach
   </tbody>
 </table>
-
-{{-- {!! $data->render() !!} --}}
-{{-- @include('usuarios.includes.modal-delete') --}}
 @endsection
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -75,6 +71,58 @@
 <script>
   $(document).ready(function() {
     $('#usuarios-table').DataTable();
+
+    $.ajaxSetup({
+      headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $(document).on('click', '.button', function (e) {
+      e.preventDefault();
+      var user_id = $(this).data('id');
+
+      const swalWithBootstrapButtons = swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false,
+      })
+
+      swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro?',
+      text: "¡No podrás revertir esto!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '¡Sí, bórralo!',
+      cancelButtonText: 'No, cancela!',
+      reverseButtons: true
+      }).then((result) => {
+      if (result.value) {
+        $.ajax({
+            type: "POST",
+            url: `{{url('admin/usuarios/eliminar/${user_id}')}}`,
+            success: function (data) {
+              $("#usuario_id_" + user_id).remove();
+              swalWithBootstrapButtons.fire(
+              'Eliminado!',
+              'Su Registro ha sido eliminado.',
+              'success'
+              )
+            }
+        });
+      } else if (
+        result.dismiss === swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+        'Cancelado',
+        'Tu Registro es seguro :)',
+        'error'
+        )
+      }
+      });
+    });
   });
 </script>
 @endsection

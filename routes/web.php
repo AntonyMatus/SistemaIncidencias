@@ -28,6 +28,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('agregar',  'UserController@postAgregar')->name('usuarios.agregar');
         Route::get('editar/{id?}', 'UserController@getEditar')->name('usuarios.editar');
         Route::post('editar/{id?}','UserController@postEditar')->name('usuarios.editar');
-        Route::delete('eliminar/{id?}','UserController@getEliminar')->name('usuarios.eliminar');
+        Route::post('eliminar/{id?}','UserController@postEliminar')->name('usuarios.eliminar');
+    });
+
+    Route::group(['prefix' => 'roles', 'middleware' => ['role:super-admin']], function () {
+        Route::get('', 'RoleController@getIndex')->name('roles.index');
+        Route::get('ver/{id}', 'RoleController@getVer')->name('roles.ver');
+        Route::get('agregar', 'RoleController@getAgregar')->name('roles.agregar');
+        Route::post('agregar',  'RoleController@postAgregar')->name('roles.agregar');
+        Route::get('editar/{id?}', 'RoleController@getEditar')->name('roles.editar');
+        Route::post('editar/{id?}','RoleController@postEditar')->name('roles.editar');
+        Route::delete('eliminar/{id?}','RoleController@getEliminar')->name('roles.eliminar');
     });
 });

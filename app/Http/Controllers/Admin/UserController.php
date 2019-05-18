@@ -60,7 +60,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
 
-        return redirect()->route('users.index')
+        return redirect()->route('usuarios.index')
             ->with('success', 'User created successfully');
     }
 
@@ -127,21 +127,14 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
 
-        return redirect()->route('users.index')
+        return redirect()->route('usuarios.index')
             ->with('success', 'User updated successfully');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getEliminar($id)
+    public function postEliminar($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')
+        return redirect()->route('usuarios.index')
             ->with('success', 'User deleted successfully');
     }
 }
