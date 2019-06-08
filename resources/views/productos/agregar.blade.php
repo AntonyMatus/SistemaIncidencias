@@ -1,6 +1,12 @@
 @extends('layouts.template')
 
 @section('styles')
+<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
+<style>
+.form-group.has-danger .form-control-label {
+    color: #f44336;
+}
+</style>
 @stop
 
 @section('content')
@@ -10,27 +16,19 @@
     </div>
     <div class="panel-body">
         <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-            <form action="{{ route('productos.agregar') }}" id="form-agregar" method="post" class="form-horizontal needs-validation" novalidate>
+            <form action="{{ route('productos.agregar') }}" id="form-agregar" method="post" class="form-horizontal">
                 @csrf
                 <div class="form-group">
-                    <label for="nombre">Nombre del proucto</label>
-                    <input type="text" class="form-control {{ $errors->has('nombre') ? ' is-invalid' : ''}}" name="nombre" id="nombre" value="{{old('nombre')}}" required>
-                    @if ($errors->has('nombre'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('nombre') }}</strong>
-                    </span>
-                    @endif
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="nombre" class="form-control-label">{{__('Nombre del Producto')}}</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{old('nombre')}}" required>
                 </div>
                 <div class="form-group">
-                    <label for="detalle">Detalle del proucto</label>
+                    <label for="detalle">Detalle del producto</label>
                     <textarea name="detalle" class="form-control" id="detalle" cols="30" rows="10" required>{{old('detalle')}}</textarea>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">{{__('Guardar')}}</button>
+                        <button id="btnSave"type="submit" class="btn btn-primary">{{__('Guardar')}}</button>
                         <a href="{{ route('productos.index') }}" class="btn btn-default">{{__('Cancelar')}}</a>
                     </div>
                 </div>
@@ -40,24 +38,56 @@
 </div>
 @stop
 @section('scripts')
+<script src="{{asset('vendor/formvalidation/formValidation.min.js')}}"></script>
+<script src="{{asset('vendor/formvalidation/framework/bootstrap4.min.js')}}"></script>
 <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
-'use strict';
-window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-    }, false);
+    $('#form-agregar').formValidation({
+    framework: "bootstrap4",
+    button: {
+        selector: '#btnSave',
+        disabled: 'disabled'
+    },
+    icon: null,
+    fields: {
+        nombre: {
+            validators: {
+                notEmpty: {
+                    message: 'El nombre del producto es un campo requerido.'
+                },
+                stringLength: {
+                    max: 100,
+                    message: 'El contenido debe tener menos de 100 caracteres.'
+                },
+                regexp: {
+                    regexp: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
+                    message:"El nombre del producto debe contener solamente letras."
+                }
+            }
+        },
+    },
+    err: {
+        clazz: 'invalid-feedback'
+    },
+    control: {
+        valid: 'is-valid',
+
+        invalid: 'is-invalid'
+    },
+    row: {
+        invalid: 'has-danger'
+    }
     });
-}, false);
+
+
+    $('#nombre').keyup(function () {
+        let valor = $(this).val();
+        if (valor != '')
+        {
+            let nuevoValor = valor.toUpperCase();
+            $(this).val(nuevoValor);
+        }
+    });
 })();
 </script>
 @endsection

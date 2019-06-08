@@ -60,12 +60,12 @@ return [
             'submenu' => [
                 [
                     'ruta' => 'productos.index',
-                    'label' => 'Lista de Roles',
+                    'label' => 'Lista de Productos',
                     'icon' => 'fa fa-list'
                 ],
                 [
                     'ruta' => 'productos.agregar',
-                    'label' => 'Agregar Rol',
+                    'label' => 'Agregar Producto',
                     'icon' => 'fa fa-plus'
                 ]
             ]
