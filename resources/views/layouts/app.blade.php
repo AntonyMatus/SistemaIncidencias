@@ -7,8 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('APP.NAME', 'LAXCORE') }}</title>
+    <title>{{ config('APP.NAME', 'Laxcore') }}</title>
 
+    <!-- AppIcon -->
+    <link rel="shortcut icon" href="{{{ asset('img/laravel.png') }}}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 

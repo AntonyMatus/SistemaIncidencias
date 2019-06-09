@@ -52,7 +52,10 @@ class PermissionTableSeeder extends Seeder
 
         // Creación del usuario
         $user = Xhunter\Models\User::create([
-            'name' => 'fister',
+            'name' => 'cristian yair',
+            'last_name' => 'gutierrez',
+            'username' => 'fister',
+            'avatar' => '',
             'email' => 'admin@dev.net',
             'password' => bcrypt('secret')
         ]);

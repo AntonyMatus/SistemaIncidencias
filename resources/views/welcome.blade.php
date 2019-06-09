@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>LaxCore</title>
-
+    <title>{{ config('APP.NAME', 'Laxcore') }}</title>
+    <!-- AppIcon -->
+    <link rel="shortcut icon" href="{{{ asset('img/laravel.png') }}}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('landing-page/assets/css/bootstrap.min.css')}}" >
     <!-- Icon -->
@@ -33,7 +34,7 @@
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a href="index.html" class="navbar-brand"><img src="{{asset('landing-page/assets/img/logo.png')}}" alt=""></a>
+          <a href="/" style="margin-right: 0rem;" class="navbar-brand"><img src="{{asset('img/app.png')}}" alt="icono del sitio"></a><a href="/" style="color: #333;">{{__('Laxcore')}}</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>

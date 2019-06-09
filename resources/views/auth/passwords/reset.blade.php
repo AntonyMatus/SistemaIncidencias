@@ -32,6 +32,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <p class="form-text text-muted">{{__('Su contraseña debe tener más de 8 caracteres, debe contener al menos 1 mayúscula, 1 minúscula, 1 carácter numérico y 1 especial')}}</p>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
