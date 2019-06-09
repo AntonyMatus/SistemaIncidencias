@@ -13,7 +13,7 @@ return [
         [
             'titulo' => 'Usuarios',
             'grupo_ruta' => 'usuarios',
-            'icon' => 'fa fa-users fa-lg mt-4',
+            'icon' => 'fa fa-users',
             'is_link' => false,
             'item_in_submenu' => true,
             'descripcion' => 'Módulo de Administración de Usuarios',
