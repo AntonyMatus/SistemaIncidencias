@@ -70,5 +70,25 @@ return [
                 ]
             ]
         ],
+        [
+            'titulo' => 'Vehiculos',
+            'grupo_ruta' => 'vehiculos',
+            'icon' => 'fa fa-car',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración de vehiculos',
+            'submenu' => [
+                [
+                    'ruta' => 'vehiculos.index',
+                    'label' => 'Lista de Vehiculos',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'vehiculos.agregar',
+                    'label' => 'Agregar Vehiculo',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
     ]
 ];

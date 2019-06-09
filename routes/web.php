@@ -51,4 +51,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('editar/{id?}','ProductoController@postEditar')->name('productos.editar');
         Route::post('eliminar/{id?}','ProductoController@getEliminar')->name('productos.eliminar');
     });
+
+    Route::group(['prefix' => 'vehiculos'], function () {
+        Route::get('', 'VehiculoController@getIndex')->name('vehiculos.index');
+        Route::get('ver/{id}', 'VehiculoController@getVer')->name('vehiculos.ver');
+        Route::get('agregar', 'VehiculoController@getAgregar')->name('vehiculos.agregar');
+        Route::post('agregar',  'VehiculoController@postAgregar')->name('vehiculos.agregar');
+        Route::get('editar/{id?}', 'VehiculoController@getEditar')->name('vehiculos.editar');
+        Route::post('editar/{id?}','VehiculoController@postEditar')->name('vehiculos.editar');
+        Route::post('eliminar/{id?}','VehiculoController@getEliminar')->name('vehiculos.eliminar');
+    });
 });
