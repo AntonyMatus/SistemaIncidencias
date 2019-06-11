@@ -222,7 +222,7 @@
     </div>
     </li>
     <li class="nav-item dropdown">
-    <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link nav-link" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
     <img class="img-avatar" src="{{ Auth::user()->getAvatarPath() }}" alt="admin@bootstrapmaster.com">
     </a>
     <div class="dropdown-menu dropdown-menu-right">

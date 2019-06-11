@@ -1,10 +1,10 @@
 <footer class="app-footer">
     <div>
-    <a href="#">CoreUI Pro - Diomar Martinez VV</a>
-    <span>© 2018 creativeLabs.</span>
+    <a href="#">LaxCore - Fister & Tigre Toño</a>
+    <span>© 2019 fisterDev.</span>
     </div>
     <div class="ml-auto">
-    <span>Powered by</span>
-    <a href="https://coreui.io/pro/">CoreUI Pro</a>
+    <span>Developer by</span>
+    <a href="https://coreui.io/pro/">FisterCompany</a>
     </div>
     </footer>

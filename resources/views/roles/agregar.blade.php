@@ -38,15 +38,20 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Permission:</strong>
-                <br/>
-                @foreach($permission as $item)
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="{{ $item->name }}"
-                    value="{{ $item->id }}" name="permission[]"
-                    {{ in_array($item->id, old('permission', [])) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="{{ $item->name }}">{{ $item->display_name }}</label>
-                </div>
+                <strong>{{__('Permisos:')}}</strong><br>
+                @foreach($permission as $index => $item)
+                    @php
+                        $aux = $index;
+                    @endphp
+                    @if (($aux % 5) === 0)
+                        {{ Str::before(Str::title($item->name), '.index') }}
+                    @endif
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="{{ $item->name }}"
+                        value="{{ $item->id }}" name="permission[]"
+                        {{ in_array($item->id, old('permission', [])) ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="{{ $item->name }}">{{ $item->display_name }}</label>
+                    </div>
                 @endforeach
             </div>
         </div>

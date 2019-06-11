@@ -42,7 +42,7 @@ class User extends Authenticatable
     #region Accesores
     public function getAvatarPath()
     {
-        return $this->avatar ?: asset('img/laravel.png');
+        return $this->avatar ?: asset('img/avatars/fire-force-prota.jpg');
     }
     #endregion
 }
