@@ -1,25 +1,18 @@
 @extends('layouts.template')
 
-@section('styles')
-<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
-<style>
-.form-group.has-danger .form-control-label {
-    color: #f44336;
-}
-</style>
-@stop 
+@section('breadcrumbs', Breadcrumbs::render('vehiculos.agregar'))
 
 @section('content')
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-user"></i> {{__('Agregar Vehiculo')}}</h3>
+        <h3 class="panel-title"><i class="fa fa-car"></i> {{__('Agregar Vehiculo')}}</h3>
     </div>
     <div class="panel-body">
         <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-            <form action="{{ route('vehiculos.agregar') }}" id="form-agregar" method="post" class="form-horizontal">
+            <form action="{{ route('vehiculos.agregar') }}" id="form-agregar" method="POST" class="form-horizontal">
                 @csrf
                 <div class="form-group">
-                    <label for="nombre" class="form-control-label">{{__('Nombre del Vehiculo')}}</label>
+                    <label for="nombre" class="form-control-label">{{__('Unidad del Vehiculo')}}</label>
                     <input type="text" class="form-control" name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad')}}" required>
                 </div>
                 
@@ -53,15 +46,15 @@
         vehiculo_unidad: {
             validators: {
                 notEmpty: {
-                    message: 'El nombre del vehiculo es un campo requerido.'
+                    message: 'La Unidad del vehiculo es un campo requerido.'
                 },
                 stringLength: {
-                    max: 100,
-                    message: 'El contenido debe tener menos de 100 caracteres.'
+                    max: 6,
+                    message: 'El formato no es el correcto.'
                 },
                 regexp: {
-                    regexp: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
-                    message:"El nombre del vehiculo debe contener solamente letras."
+                    regexp: /^[A-Z]{1}-[\d]{1,3}$/,  
+                    message:"1ra letra Mayuscula, seguido de un -, seguido de 3 digitos."
                 }
             }
         },
@@ -93,3 +86,4 @@
 </script>
     
 @endsection
+

@@ -88,6 +88,7 @@ return [
                     'label' => 'Agregar Vehiculo',
                     'icon' => 'fa fa-plus'
                 ]
+                
             ]
         ],
     ]

@@ -14,11 +14,11 @@ class VehiculoController extends Controller
 
     public function __construct(VehiculoRepository $repository, VehiculosService $service)
     {
-        $this->middleware('permission:vehiculo.index');
-        $this->middleware('permission:vehiculo.ver', ['only' => ['getVer']]);
-        $this->middleware('permission:vehiculo.crear', ['only' => ['getAgregar', 'postAgregar']]);
-        $this->middleware('permission:vehiculo.editar', ['only' => ['getEditar', 'postEditar']]);
-        $this->middleware('permission:vehiculo.eliminar', ['only' => ['getEliminar']]);
+        $this->middleware('permission:vehiculos.index');
+        $this->middleware('permission:vehiculos.ver', ['only' => ['getVer']]);
+        $this->middleware('permission:vehiculos.crear', ['only' => ['getAgregar', 'postAgregar']]);
+        $this->middleware('permission:vehiculos.editar', ['only' => ['getEditar', 'postEditar']]);
+        $this->middleware('permission:vehiculos.eliminar', ['only' => ['getEliminar']]);
         $this->repository = $repository;
         $this->service = $service;
     }
@@ -29,8 +29,7 @@ class VehiculoController extends Controller
      */
     public function getindex()
     {
-        $vehiculos = $this->repository->orderBy('vehiculo_unidad','ASC')->paginate(10);
-
+        $vehiculos = $this->repository->all();
         return view('vehiculos.index', compact('vehiculos'));
     }
 
@@ -56,7 +55,7 @@ class VehiculoController extends Controller
         $modelo = $this->service->create($data);
 
         if (null !== $modelo) {
-            Toastr::success('Los datos se han guardado con éxito.!','Creado con Exito');
+            Toastr::success('Los datos se han guardado con éxito!','Creado con Exito');
             return redirect()->route('vehiculos.index');
         } else {
             Toastr::warning($this->service->getMessages()->first(),'Upss Algo Salió Mal!');

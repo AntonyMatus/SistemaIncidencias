@@ -1,35 +1,25 @@
 @extends('layouts.template')
 
-@section('styles')
-    
-@stop 
+@section('breadcrumbs', Breadcrumbs::render('vehiculos.editar'))
 
 @section('content')
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-user"></i> {{__('Agregar vehiculo')}}</h3>
+        <h3 class="panel-title"><i class="fa fa-car"></i> {{__('Agregar vehiculo')}}</h3>
     </div>
     <div class="panel-body">
         <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-            <form action="{{ route('vehiculos.editar', [ 'id' => $modelo->id]) }}" id="form-editar" method="post" class="form-horizontal needs-validation" novalidate>
+            <form action="{{ route('vehiculos.editar', [ 'id' => $modelo->id]) }}" id="form-editar" method="POST" class="form-horizontal" >
                 @csrf
                 <div class="form-group">
-                    <label for="nombre">Nombre del vehiculo</label>
-                    <input type="text" class="form-control {{ $errors->has('vehiculo_unidad') ? ' is-invalid' : ''}}"
+                    <label for="nombre">Unidad del vehiculo</label>
+                    <input type="text" class="form-control"
                     name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad', $modelo->vehiculo_unidad)}}" required>
-                    @if ($errors->has('vehiculo_unidad'))
-                    <span class="invalid-feedback">
-                        <strong>{{ $errors->first('vehiculo_unidad') }}</strong>
-                    </span>
-                    @endif
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
                 </div>
                 
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">{{__('Guardar')}}</button>
+                        <button id="btnSave" type="submit" class="btn btn-primary">{{__('Guardar')}}</button>
                         <a href="{{ route('vehiculos.index') }}" class="btn btn-default">{{__('Cancelar')}}</a>
                     </div>
                 </div>
@@ -40,24 +30,57 @@
 @stop 
 
 @section('scripts')
+<script src="{{asset('vendor/formvalidation/formValidation.min.js')}}"></script>
+<script src="{{asset('vendor/formvalidation/framework/bootstrap4.min.js')}}"></script>
+
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+    $('#form-editar').formValidation({
+    framework: "bootstrap4",
+    button: {
+        selector: '#btnSave',
+        disabled: 'disabled'
+    },
+    icon: null,
+    fields: {
+        vehiculo_unidad: {
+            validators: {
+                notEmpty: {
+                    message: 'La Unidad del vehiculo es un campo requerido.'
+                },
+                stringLength: {
+                    max: 6,
+                    message: 'El formato no es el correcto.'
+                },
+                regexp: {
+                    regexp:  /^[A-Z]{1}-[\d]{1,3}$/, 
+                    message:"1ra letra Mayuscula, seguido de un -, seguido de 3 digitos."
+                }
             }
-            form.classList.add('was-validated');
-        }, false);
-        });
-    }, false);
-    })();
-    </script>
+        },
+    },
+    err: {
+        clazz: 'invalid-feedback'
+    },
+    control: {
+        valid: 'is-valid',
+
+        invalid: 'is-invalid'
+    },
+    row: {
+        invalid: 'has-danger'
+    }
+    });
+
+
+    $('#vehiculo_unidad').keyup(function () {
+        let valor = $(this).val();
+        if (valor != '')
+        {
+            let nuevoValor = valor.toUpperCase();
+            $(this).val(nuevoValor);
+        }
+    });
+})();
+</script>
 @endsection

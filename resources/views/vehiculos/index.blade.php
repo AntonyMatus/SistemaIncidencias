@@ -1,62 +1,69 @@
 @extends('layouts.template')
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+@endsection
+
+@section('breadcrumbs', Breadcrumbs::render('vehiculos'))
+
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Vehiculos Management</h2>
-        </div>
-        <div class="pull-right">
-        @can('vehiculos.crear')
-            <a class="btn btn-success" href="{{ route('vehiculos.agregar') }}">{{__('Agregar Vehiculo')}}</a>
-        @endcan
-        <a href="{{route('dashboard')}}" class="btn btn-info">{{__('volver')}}</a>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>{{__('Vehiculo Unidad')}}</th>
-                    <th>{{__('Acciones')}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($vehiculos as $vehiculo)
-                    <tr id="vehiculo_id_{{ $vehiculo->id }}">
-                        <td>{{$vehiculo->vehiculo_unidad}}</td>
-                        <td>
-                            @can('vehiculos.ver')
-                                <a class="btn btn-info" href="{{ route('vehiculos.ver',$vehiculo->id) }}">Show</a>
-                            @endcan
-                            @can('vehiculos.editar')
-                                <a class="btn btn-primary" href="{{ route('vehiculos.editar',$vehiculo->id) }}">Edit</a>
-                            @endcan
-                            @can('vehiculos.eliminar')
-                            <a href="javascript:void(0)" class="button btn btn-danger" data-id="{{$vehiculo->id}}">Delete</a>
-                            @endcan
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td class="text-center" colspan="10">{{__('No hay registros para mostrar')}}</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-end">
-            <div>
-                {!! $vehiculos->links() !!}
-            </div>
-        </div>
+      <div class="pull-left">
+        <h2>Vehiculos</h2>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-block btn-outline-primary" style="display: inline;" href="{{ route('vehiculos.agregar') }}">{{__('Agregar Vehiculo')}}</a>
+        <a href="{{route('dashboard')}}" class="btn btn-info">
+          <i class="fa fa-mail-reply"></i>{{__('volver')}}
+        </a>
+      </div>
     </div>
 </div>
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+  <p>{{ $message }}</p>
 </div>
+@endif
+
+<table id="vehiculos-table" class="table table-striped table-bordered" style="width: 100%">
+    <thead>
+        <th>No</th>
+        <th>Unidad_vehiculo</th>
+        <th width="280px">Acciones</th>
+    </thead>
+    <tbody>
+        @foreach ($vehiculos as $key => $vehiculo)
+    <tr id="vehiculo_id_{{$vehiculo->id}}">
+        <td>{{ ++$key }}</td>
+        <td>{{$vehiculo->vehiculo_unidad}}</td>
+        <td>
+                <a class="btn btn-outline-info" href="{{ route('vehiculos.ver',$vehiculo->id) }}">
+                        <span class="fa fas fa-eye fa-eye-alt"></span>Ver
+                      </a>
+                      <a class="btn btn-outline-primary" href="{{ route('vehiculos.editar',$vehiculo->id) }}">
+                        <span class="fa fa-edit"></span>Editar
+                      </a>
+                      <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$vehiculo->id}}">
+                        <span class="fa fa-trash-o"></span>Eliminar
+                </a>
+        </td>
+    </tr>
+        @endforeach
+  </tbody>
+</table>
 @endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
-$(document).ready(function () {
+    $(document).ready(function() {
+    $('#vehiculos-table').DataTable();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -106,6 +113,6 @@ $(document).ready(function () {
         }
         });
     });
-});
+}); 
 </script>
 @endsection
