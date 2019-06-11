@@ -1,5 +1,7 @@
 @extends('layouts.template')
 
+@section('breadcrumbs', Breadcrumbs::render('usuarios.ver', $user->name))
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">

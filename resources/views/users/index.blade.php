@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 @endsection
 
+@section('breadcrumbs', Breadcrumbs::render('usuarios'))
+
 @section('content')
 <div class="row">
   <div class="col-lg-12 margin-tb">

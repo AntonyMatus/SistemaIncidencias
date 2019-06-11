@@ -26,7 +26,8 @@
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>
   </div>
   <main class="main">
-    <ol class="breadcrumb">
+    @yield('breadcrumbs')
+    {{-- <ol class="breadcrumb">
       <li class="breadcrumb-item">Home</li>
       <li class="breadcrumb-item">
         <a href="#">Admin</a>
@@ -44,7 +45,7 @@
             <i class="icon-settings"></i> &nbsp;Settings</a>
         </div>
       </li>
-    </ol>
+    </ol> --}}
     <div class="container-fluid">
       @include('vendor.bs4-alert.template')
       <div id="ui-view">

@@ -1,5 +1,6 @@
 @extends('layouts.template')
 
+@section('breadcrumbs', Breadcrumbs::render('usuarios.editar'))
 
 @section('content')
 <div class="row">

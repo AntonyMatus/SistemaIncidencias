@@ -38,4 +38,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    #region Accesores
+    public function getAvatarPath()
+    {
+        return $this->avatar ?: asset('img/laravel.png');
+    }
+    #endregion
 }

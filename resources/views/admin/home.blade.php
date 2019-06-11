@@ -1,40 +1,42 @@
 @extends('layouts.template')
 
 @section('style')
-<style>
-    .card{
-        margin-bottom: 1.875em;
-        border-radius: 5px;
-        padding: 0;
-        border: 0px solid transparent;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-    }
-    .stat-widget-five {
-        min-height: 60px;
-    }
-    .stat-widget-five .stat-icon {
-        font-size: 50px;
-        line-height: 50px;
-        position: absolute;
-        left: 30px;
-        top: 20px;
-    }
-    .flat-color-1 {
-        color: #00c292;
-    }
-    .stat-widget-five .stat-content {
-        margin-left: 100px;
-    }
-    .stat-widget-five .stat-text {
-        color: #455a64;
-        font-size: 20px;
-    }
-    .stat-widget-five .stat-heading {
-        color: #99abb4;
-        font-size: 14px;
-    }
-</style>
+    <style>
+        .card{
+            margin-bottom: 1.875em;
+            border-radius: 5px;
+            padding: 0;
+            border: 0px solid transparent;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+        .stat-widget-five {
+            min-height: 60px;
+        }
+        .stat-widget-five .stat-icon {
+            font-size: 50px;
+            line-height: 50px;
+            position: absolute;
+            left: 30px;
+            top: 20px;
+        }
+        .flat-color-1 {
+            color: #00c292;
+        }
+        .stat-widget-five .stat-content {
+            margin-left: 100px;
+        }
+        .stat-widget-five .stat-text {
+            color: #455a64;
+            font-size: 20px;
+        }
+        .stat-widget-five .stat-heading {
+            color: #99abb4;
+            font-size: 14px;
+        }
+    </style>
 @endsection
+
+@section('breadcrumbs', Breadcrumbs::render('dashboard'))
 
 @section('content')
     @php

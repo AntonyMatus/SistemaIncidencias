@@ -1,5 +1,7 @@
 @extends('layouts.template')
 
+@section('breadcrumbs', Breadcrumbs::render('roles.ver', $role->name))
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
