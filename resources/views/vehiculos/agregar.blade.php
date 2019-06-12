@@ -1,5 +1,13 @@
 @extends('layouts.template')
-
+@section('styles')
+<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
+<style>
+    .form-group.has-danger .form-control-label {
+        color: #f44336;
+    }
+    </style>
+    
+@stop
 @section('breadcrumbs', Breadcrumbs::render('vehiculos.agregar'))
 
 @section('content')
@@ -12,8 +20,8 @@
             <form action="{{ route('vehiculos.agregar') }}" id="form-agregar" method="POST" class="form-horizontal">
                 @csrf
                 <div class="form-group">
-                    <label for="nombre" class="form-control-label">{{__('Unidad del Vehiculo')}}</label>
-                    <input type="text" class="form-control" name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad')}}" required>
+                    <label for="nombre" class="form-control-label">{{__('Unidad')}}</label>
+                    <input type="text" class="form-control" name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad')}}">
                 </div>
                 
                 <div class="form-group row">
@@ -25,14 +33,11 @@
             </form>
         </div>
     </div>
-</div>
-    
+</div> 
 @stop
-
 @section('scripts')
 <script src="{{asset('vendor/formvalidation/formValidation.min.js')}}"></script>
 <script src="{{asset('vendor/formvalidation/framework/bootstrap4.min.js')}}"></script>
-
 <script>
 (function() {
     $('#form-agregar').formValidation({
@@ -46,15 +51,15 @@
         vehiculo_unidad: {
             validators: {
                 notEmpty: {
-                    message: 'La Unidad del vehiculo es un campo requerido.'
+                    message: 'La Unidad es un campo requerido.'
                 },
                 stringLength: {
                     max: 6,
-                    message: 'El formato no es el correcto.'
+                    message: 'La longitud máxima es de 6 caracteres!'
                 },
                 regexp: {
                     regexp: /^[A-Z]{1}-[\d]{1,3}$/,  
-                    message:"1ra letra Mayuscula, seguido de un -, seguido de 3 digitos."
+                    message:"La primera letra debe ser Máyuscula, seguido de un '-' y digitos. Ejemplo: B-103."
                 }
             }
         },

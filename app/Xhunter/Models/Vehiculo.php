@@ -8,6 +8,5 @@ class Vehiculo extends Model
 {
     protected $fillable = [
         'vehiculo_unidad'
-        
     ];
 }

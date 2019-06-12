@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label for="nombre">Unidad del vehiculo</label>
                     <input type="text" class="form-control"
-                    name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad', $modelo->vehiculo_unidad)}}" required>
+                    name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad', $modelo->vehiculo_unidad)}}">
                 </div>
                 
                 <div class="form-group row">
@@ -50,11 +50,11 @@
                 },
                 stringLength: {
                     max: 6,
-                    message: 'El formato no es el correcto.'
+                    message: 'La longitud maxima es de 6 caracteres!'
                 },
                 regexp: {
                     regexp:  /^[A-Z]{1}-[\d]{1,3}$/, 
-                    message:"1ra letra Mayuscula, seguido de un -, seguido de 3 digitos."
+                    message:"La primera letra debe ser Máyuscula, seguido de un '-' y digitos. Ejemplo: B-103."
                 }
             }
         },
