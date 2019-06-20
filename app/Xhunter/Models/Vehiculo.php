@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Vehiculo extends Model
 {
     protected $fillable = [
-        'vehiculo_unidad'
+        'imagen',
+        'vehiculo_unidad',
+        'num_serie',
+        'inventario',
+        'no_motor',
+        'marca',
+        'modelo',
+        'placas',
+        'estatus_vehiculo'
     ];
 }

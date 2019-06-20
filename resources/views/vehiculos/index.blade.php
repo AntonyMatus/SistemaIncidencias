@@ -2,7 +2,7 @@
 
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
 @endsection
 
 @section('breadcrumbs', Breadcrumbs::render('vehiculos'))
@@ -28,7 +28,37 @@
   <p>{{ $message }}</p>
 </div>
 @endif
+<div class="row">
+    @foreach ($vehiculos as $vehiculo)
+    <div class="col-sm">
+    <div id="vehiculos-card" class="card text-center" style="width: 18rem">
+        <img style="width: 200px; height: 200px; background-color: #EFEFEF; margin: 20px;"
+        class="card-img-top rounded-circle mx-auto d-block" src="{{ asset('storage').'/'. $vehiculo->imagen}} " alt="{{$vehiculo->id}}"  >
+        <div class="card-body">
+          <h5 class="card-title">Unidad: {{$vehiculo->vehiculo_unidad}} </h5>
+          <p class="card-text"></p>
+        </div>
+        <div class="card-footer dropdown">
+          <a class="btn btn-brand btn-facebook float-left" href="{{ route('vehiculos.ver', $vehiculo->id)}}">
+            <i class="fa fa-eye"></i>
+            <span>Ver</span>
+          </a>
+          <button type="button" class="btn btn-secondary dropdown-toggle float-right" data-toggle="dropdown">Mas.</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item btn-secondary" href="{{route('vehiculos.ver', $vehiculo->id)}}"><span class="fa fas fa-eye fa-eye-alt"></span>Ver</a>
+            <a class="dropdown-item btn-secondary" href="{{route('vehiculos.editar', $vehiculo->id)}}"><span class="fa fa-edit"></span>Editar</a>
+            <form method="POST" action="{{route('vehiculos.eliminar',[ 'id' => $vehiculo->id])}}">
+              @csrf
+              <button class="btn btn-danger" type="submit" onclick="return confirm('¿Borrar?')">Borrar</button>
+              </form>
+          </div>
+        </div>
+      </div>
+  </div>
+  @endforeach
+</div>
 
+<!--
 <table id="vehiculos-table" class="table table-striped table-bordered" style="width: 100%">
     <thead>
         <th>No</th>
@@ -55,16 +85,14 @@
         @endforeach
   </tbody>
 </table>
+-->
 @endsection
 
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
-    $('#vehiculos-table').DataTable();
-    $.ajaxSetup({
+     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }

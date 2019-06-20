@@ -6,6 +6,10 @@ use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Vehiculos\VehiculoRepository;
 use Xhunter\Services\VehiculosService;
 use TJGazel\Toastr\Facades\Toastr;
+use PhpParser\Node\Stmt\If_;
+use Xhunter\Enumerable\EstatusVehiculo;
+use Illuminate\Support\Facades\Storage;
+use Xhunter\Models\Vehiculo;
 
 class VehiculoController extends Controller
 {
@@ -46,12 +50,25 @@ class VehiculoController extends Controller
 
     public function getAgregar()
     {
-        return view('vehiculos.agregar');
+        //obtengo todos los Valores del Enumerable
+        $Estatus = EstatusVehiculo::getValues();
+        return view('vehiculos.agregar', compact('Estatus'));
     }
 
     public function postAgregar()
     {
-        $data = request()->all();
+        $data = request()->except('_token');
+        if(request()->hasFile('imagen')){
+            $data['imagen']= request()->file('imagen')->store('uploads/vehiculos', 'public');
+        }
+        if($data['estatus_vehiculo'] == 'Funcionamiento'){ 
+            $data['estatus_vehiculo'] = 1;
+        }elseif ($data['estatus_vehiculo'] == 'Taller') {
+            $data['estatus_vehiculo'] = 2;
+        }
+        
+        //$data['estatus_vehiculo'] = EstatusVehiculo::getEstatusVehiculo($data['estatus_vehiculo']);
+        //dd($data);
         $modelo = $this->service->create($data);
 
         if (null !== $modelo) {
@@ -65,9 +82,10 @@ class VehiculoController extends Controller
 
     public function getEditar($id)
     {
+        $Estatus = EstatusVehiculo::getValues();
         $modelo = $this->repository->find($id);
         if (null !== $modelo) {
-            return view('vehiculos.editar', compact('modelo'));
+            return view('vehiculos.editar', compact('modelo','Estatus'));
         }
         Toastr::error(_i('Registro no encontrado'));
         return redirect()->route('vehiculos.index');
@@ -76,6 +94,16 @@ class VehiculoController extends Controller
     public function postEditar($id)
     {
         $data = request()->all();
+        if(request()->hasFile('imagen')){
+            $vehiculo = Vehiculo::findOrFail($id);
+            Storage::delete('public/'.$vehiculo->imagen);
+            $data['imagen']= request()->file('imagen')->store('uploads/vehiculos', 'public'); 
+        }
+        if($data['estatus_vehiculo'] == 'Funcionamiento'){ 
+            $data['estatus_vehiculo'] = 1;
+        }elseif ($data['estatus_vehiculo'] == 'Taller') {
+            $data['estatus_vehiculo'] = 2;
+        }
         $response = $this->service->update($id, $data);
 
         if ($response) {
@@ -92,10 +120,16 @@ class VehiculoController extends Controller
 
     public function getEliminar($id)
     {
+        $vehiculo = Vehiculo::findOrFail($id);
+        if(Storage::exists('public/'.$vehiculo->imagen)){
+           Storage::delete('public/'.$vehiculo->imagen);
+        }
         $deleted = $this->service->delete($id);
         if ($deleted == false) {
             Toastr::error(__($this->service->getMessages()->first('errors')));
         }
+        return redirect()->route('vehiculos.index');
+
     }
 
     

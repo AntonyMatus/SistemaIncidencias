@@ -5,16 +5,81 @@
 @section('content')
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-car"></i> {{__('Agregar vehiculo')}}</h3>
+        <h3 class="panel-title"><i class="fa fa-car"></i> {{__('Editar Vehiculo')}}</h3>
     </div>
     <div class="panel-body">
-        <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3">
-            <form action="{{ route('vehiculos.editar', [ 'id' => $modelo->id]) }}" id="form-editar" method="POST" class="form-horizontal" >
+        <div class="container">
+            <form action="{{ route('vehiculos.editar', [ 'id' => $modelo->id]) }}" id="form-editar" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                    <label for="nombre">Unidad del vehiculo</label>
-                    <input type="text" class="form-control"
-                    name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad', $modelo->vehiculo_unidad)}}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="unidad" class="form-control-label">{{__('Unidad')}}</label>
+                            <input type="text" class="form-control" name="vehiculo_unidad" id="vehiculo_unidad" value="{{old('vehiculo_unidad')}}{{$modelo->vehiculo_unidad}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="No_serie" class="form-control-label">{{__('Numero de Serie')}}</label>
+                            <input type="text" class="form-control" name="num_serie" id="num_serie" value="{{old('num_serie')}}{{$modelo->num_serie}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Inventario" class="form-control-label">{{__('Inventario')}}</label>
+                            <input type="text" class="form-control" name="inventario" id="inventario" value="{{old('inventario')}}{{$modelo->inventario}} ">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="No_Motor" class="form-control-label">{{__('Numero del Motor')}}</label>
+                            <input type="text" class="form-control" name="no_motor" id="no_motor" value="{{old('no_motor')}}{{$modelo->no_motor}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Marca" class="form-control-label">{{__('Marca')}}</label>
+                            <input type="text" class="form-control" name="marca" id="marca" value="{{old('marca')}}{{$modelo->marca}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Modelo" class="form-control-label">{{__('Modelo')}}</label>
+                            <input type="text" class="form-control" name="modelo" id="modelo" value="{{old('modelo')}}{{$modelo->modelo}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Placas" class="form-control-label">{{__('Placas')}}</label>
+                            <input type="text" class="form-control" name="placas" id="placas" value="{{old('placas')}}{{$modelo->placas}}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Estado" class="form-control-label">{{__('Estado de la Unidad')}}</label>
+                            @foreach ($Estatus as $estatus)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="estatus_vehiculo" id="estatus_vehiculo" value="{{old('estatus_vehiculo')}} {{ $estatus}}">
+                                    <label class="form-check-label" for="estatus_vehiculo">
+                                      {{ $estatus}}
+                                    </label>
+                                  </div>
+                              @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="imagen" class="form-control-label">{{__('Imagen del vehiculo')}}</label>
+                            <br>
+                            <img src="{{ asset('storage').'/'. $modelo->imagen}}" class="img-thumbnail img-fluid" alt="" width="350">
+                            <br>
+                            <input type="file" class="form-control" name="imagen" id="imagen" value="{{old('imagen')}}">
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="form-group row">
