@@ -2,7 +2,7 @@
 
 namespace Xhunter\Enumerable;
 
-use Xhunter\Abstracts\Abstracts\AEnumerable;
+use Xhunter\Abstracts\AEnumerable;
 
 class EstatusVehiculo extends AEnumerable
 {

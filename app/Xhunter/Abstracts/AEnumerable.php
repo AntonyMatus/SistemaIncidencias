@@ -7,7 +7,7 @@
  * @todo clase para enumerables
  */
 
-namespace Xhunter\Abstracts\Abstracts;
+namespace Xhunter\Abstracts;
 
 abstract class AEnumerable
 {
