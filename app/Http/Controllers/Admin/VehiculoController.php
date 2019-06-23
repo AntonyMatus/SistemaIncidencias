@@ -6,16 +6,13 @@ use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Vehiculos\VehiculoRepository;
 use Xhunter\Services\VehiculosService;
 use TJGazel\Toastr\Facades\Toastr;
-use PhpParser\Node\Stmt\If_;
 use Xhunter\Enumerable\EstatusVehiculo;
 use Illuminate\Support\Facades\Storage;
-use Xhunter\Models\Vehiculo;
+
 
 class VehiculoController extends Controller
 {
-
     protected $repository, $service;
-
     public function __construct(VehiculoRepository $repository, VehiculosService $service)
     {
         $this->middleware('permission:vehiculos.index');
@@ -43,7 +40,6 @@ class VehiculoController extends Controller
             if($modelo !== null){
                 return view()->make('vehiculos.ver',compact('modelo'));
             }
-
             Toastr::error(_i("El Registro seleccionado no existe"));
             return redirect()->route('vehiculos.index');
     }
@@ -59,18 +55,10 @@ class VehiculoController extends Controller
     {
         $data = request()->except('_token');
         if(request()->hasFile('imagen')){
-            $data['imagen']= request()->file('imagen')->store('uploads/vehiculos', 'public');
+            $path = \Storage::disk('public')->putFileAs('uploads/vehiculos',$data['imagen'], uniqid().str_replace(' ', '-',$data['imagen']->getClientOriginalName()));
+            $data['imagen'] =$path;
         }
-        if($data['estatus_vehiculo'] == 'Funcionamiento'){ 
-            $data['estatus_vehiculo'] = 1;
-        }elseif ($data['estatus_vehiculo'] == 'Taller') {
-            $data['estatus_vehiculo'] = 2;
-        }
-        
-        //$data['estatus_vehiculo'] = EstatusVehiculo::getEstatusVehiculo($data['estatus_vehiculo']);
-        //dd($data);
         $modelo = $this->service->create($data);
-
         if (null !== $modelo) {
             Toastr::success('Los datos se han guardado con éxito!','Creado con Exito');
             return redirect()->route('vehiculos.index');
@@ -79,33 +67,25 @@ class VehiculoController extends Controller
             return redirect()->route('vehiculos.agregar')->withInput();
         }
     }
-
     public function getEditar($id)
     {
-        $Estatus = EstatusVehiculo::getValues();
         $modelo = $this->repository->find($id);
         if (null !== $modelo) {
-            return view('vehiculos.editar', compact('modelo','Estatus'));
+            return view('vehiculos.editar', compact('modelo'));
         }
         Toastr::error(_i('Registro no encontrado'));
         return redirect()->route('vehiculos.index');
     }
-
     public function postEditar($id)
     {
-        $data = request()->all();
+        $data = request()->all();     
         if(request()->hasFile('imagen')){
-            $vehiculo = Vehiculo::findOrFail($id);
+            $vehiculo = $this->repository->find($id);
             Storage::delete('public/'.$vehiculo->imagen);
-            $data['imagen']= request()->file('imagen')->store('uploads/vehiculos', 'public'); 
-        }
-        if($data['estatus_vehiculo'] == 'Funcionamiento'){ 
-            $data['estatus_vehiculo'] = 1;
-        }elseif ($data['estatus_vehiculo'] == 'Taller') {
-            $data['estatus_vehiculo'] = 2;
+            $path = \Storage::disk('public')->putFileAs('uploads/vehiculos',$data['imagen'], uniqid().str_replace(' ', '-',$data['imagen']->getClientOriginalName()));
+            $data['imagen']= $path; 
         }
         $response = $this->service->update($id, $data);
-
         if ($response) {
             Toastr::success(__('Registro actualizado'));
         } else {
@@ -114,13 +94,11 @@ class VehiculoController extends Controller
                 'id' => $id
             ])->withInput();
         }
-
         return redirect()->route('vehiculos.index');
     }
-
     public function getEliminar($id)
     {
-        $vehiculo = Vehiculo::findOrFail($id);
+        $vehiculo = $this->repository->find($id);
         if(Storage::exists('public/'.$vehiculo->imagen)){
            Storage::delete('public/'.$vehiculo->imagen);
         }
@@ -129,8 +107,5 @@ class VehiculoController extends Controller
             Toastr::error(__($this->service->getMessages()->first('errors')));
         }
         return redirect()->route('vehiculos.index');
-
     }
-
-    
 }

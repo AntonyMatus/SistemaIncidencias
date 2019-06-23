@@ -59,18 +59,19 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="Estado" class="form-control-label">{{__('Estado de la Unidad')}}</label>
-                            @foreach ($Estatus as $estatus)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="estatus_vehiculo" id="estatus_vehiculo" value="{{old('estatus_vehiculo')}} {{ $estatus}}">
-                                    <label class="form-check-label" for="estatus_vehiculo">
-                                      {{ $estatus}}
-                                    </label>
-                                  </div>
-                              @endforeach
+                        <div class="form-group row form-material">
+                            <label for="estatus_vehiculo" class="col-form-label form-control-label">{{__('Estado de la Unidad')}}</label>&nbsp;&nbsp;&nbsp;
+                            <div>
+                                @foreach (\Xhunter\Enumerable\EstatusVehiculo::getAll() as $key => $value)
+                                    <div class="radio-custom radio-primary">
+                                    <input type="radio" id="rado_{{$key}}" value="{{old('estatus_vehiculo')}} {{$key}}" name="estatus_vehiculo" @if(old('estatus_vehiculo',$modelo->estatus_vehiculo) == $key)checked @endif/>
+                                        <label for="rado_{{$key}}">{{$value}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="imagen" class="form-control-label">{{__('Imagen del vehiculo')}}</label>

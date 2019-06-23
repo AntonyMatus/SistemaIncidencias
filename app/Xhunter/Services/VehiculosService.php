@@ -41,9 +41,11 @@ class VehiculosService extends AService {
     }
 
     public function update($id, array $data) {
-        try {
+        try { 
+            
             if($this->validator->with($data)->success('update')) {
                 \DB::beginTransaction();
+                
                 $this->repository->update($id, $data);
                 \DB::commit();
                 return $this->repository->find($id);

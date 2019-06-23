@@ -24,6 +24,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="imagen" class="form-control-label">{{__('Imagen del vehiculo')}}</label>
+                        
                         <input type="file" class="form-control" name="imagen" id="imagen" value="{{old('imagen')}}">
                     </div>
                 </div>
@@ -75,15 +76,15 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="Estado" class="form-control-label">{{__('Estado de la Unidad')}}</label>
-                        @foreach ($Estatus as $estatus)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estatus_vehiculo" id="estatus_vehiculo" value="{{old('estatus_vehiculo')}} {{ $estatus}} ">
-                                <label class="form-check-label" for="estatus_vehiculo">
-                                  {{ $estatus}}
-                                </label>
-                              </div>
-                          @endforeach
+                        <label for="estatus_vehiculo" class="col-form-label form-control-label">{{__('Estado de la Unidad')}}</label>&nbsp;&nbsp;&nbsp;
+                        <div>
+                            @foreach (\Xhunter\Enumerable\EstatusVehiculo::getAll() as $key => $value)
+                                <div class="radio-custom radio-primary">
+                                <input type="radio" id="rado_{{$key}}" value="{{old('estatus_vehiculo')}} {{$key}}" name="estatus_vehiculo"/>
+                                    <label for="rado_{{$key}}">{{$value}}</label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,7 +119,7 @@
                     message: 'La Unidad es un campo requerido.'
                 },
                 stringLength: {
-                    max: 6,
+                    max: 5,
                     message: 'La longitud máxima es de 6 caracteres!'
                 },
                 regexp: {
@@ -229,7 +230,7 @@
                     message: 'La longitud máxima es de 6 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[0-9a-zA-Z_-]+$/g,  
+                    regexp: /^[A-Z0-9_-]+$/,  
                     message:"Las Placas del vehiculo solo permite Letras, Numeros y guion bajo o guion. Ejemplo: CR-09-315!"
                 }
             }
@@ -248,49 +249,7 @@
         invalid: 'has-danger'
     }
     });
-
-
-    $('#vehiculo_unidad').keyup(function () {
-        let valor = $(this).val();
-        if (valor != '')
-        {
-            let nuevoValor = valor.toUpperCase();
-            $(this).val(nuevoValor);
-        }
-    });
-    $('#num_serie').keyup(function () {
-        let valor = $(this).val();
-        if (valor != '')
-        {
-            let nuevoValor = valor.toUpperCase();
-            $(this).val(nuevoValor);
-        }
-    });
-    $('#inventario').keyup(function () {
-        let valor = $(this).val();
-        if (valor != '')
-        {
-            let nuevoValor = valor.toUpperCase();
-            $(this).val(nuevoValor);
-        }
-    });
-    $('#no_motor').keyup(function () {
-        let valor = $(this).val();
-        if (valor != '')
-        {
-            let nuevoValor = valor.toUpperCase();
-            $(this).val(nuevoValor);
-        }
-    });
-    $('#marca').keyup(function () {
-        let valor = $(this).val();
-        if (valor != '')
-        {
-            let nuevoValor = valor.toUpperCase();
-            $(this).val(nuevoValor);
-        }
-    });
-    $('#placas').keyup(function () {
+    $('#vehiculo_unidad,#num_serie,#inventario,#no_motor,#marca,#placas').keyup(function () {
         let valor = $(this).val();
         if (valor != '')
         {
@@ -299,7 +258,6 @@
         }
     });
 })();
-
 </script>
     
 @endsection
