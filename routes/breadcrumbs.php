@@ -82,3 +82,49 @@ Breadcrumbs::for('vehiculos.ver', function ($trail, $vehiculo_unidad) {
     $trail->parent('vehiculos');
     $trail->push($vehiculo_unidad);
 });
+//Cargos
+Breadcrumbs::for('cargos', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Cargos', route('cargos.index'));
+});
+
+//Cargos/Agregar
+Breadcrumbs::for('cargos.agregar', function ($trail) {
+    $trail->parent('cargos');
+    $trail->push('Agregar', route('cargos.agregar'));
+});
+
+//Cargos/Editar
+Breadcrumbs::for('cargos.editar', function ($trail) {
+    $trail->parent('cargos');
+    $trail->push('Editar');
+});
+
+//Cargos/Ver
+Breadcrumbs::for('cargos.ver', function ($trail, $cargo) {
+    $trail->parent('cargos');
+    $trail->push($cargo);
+});
+//Personal
+Breadcrumbs::for('personal', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Personal', route('personal.index'));
+});
+
+//Cargos/Agregar
+Breadcrumbs::for('personal.agregar', function ($trail) {
+    $trail->parent('personal');
+    $trail->push('Agregar', route('personal.agregar'));
+});
+
+//Cargos/Editar
+Breadcrumbs::for('personal.editar', function ($trail) {
+    $trail->parent('personal');
+    $trail->push('Editar');
+});
+
+//Cargos/Ver
+Breadcrumbs::for('personal.ver', function ($trail, $nombre_completo) {
+    $trail->parent('personal');
+    $trail->push($nombre_completo);
+});

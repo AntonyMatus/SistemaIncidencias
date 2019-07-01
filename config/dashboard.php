@@ -76,7 +76,7 @@ return [
             'icon' => 'fa fa-car',
             'is_link' => false,
             'item_in_submenu' => true,
-            'descripcion' => 'Módulo de Administración de vehiculos',
+            'descripcion' => 'Módulo de Administración de Vehiculos',
             'submenu' => [
                 [
                     'ruta' => 'vehiculos.index',
@@ -86,6 +86,46 @@ return [
                 [
                     'ruta' => 'vehiculos.agregar',
                     'label' => 'Agregar Vehiculo',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
+        [
+            'titulo' => 'Cargos',
+            'grupo_ruta' => 'cargos',
+            'icon' => 'fa fa-fire-extinguisher',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración de Cargos',
+            'submenu' => [
+                [
+                    'ruta' => 'cargos.index',
+                    'label' => 'Lista de Cargos',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'cargos.agregar',
+                    'label' => 'Agregar Cargo',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
+        [
+            'titulo' => 'Personal',
+            'grupo_ruta' => 'personal',
+            'icon' => 'fa fa-user-circle-o',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración del Personal',
+            'submenu' => [
+                [
+                    'ruta' => 'personal.index',
+                    'label' => 'Lista de Personal',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'personal.agregar',
+                    'label' => 'Agregar Personal',
                     'icon' => 'fa fa-plus'
                 ]
             ]

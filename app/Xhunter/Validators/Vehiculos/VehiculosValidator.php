@@ -30,7 +30,6 @@ class VehiculosValidator extends AValidator
             
             
         ];
-
         $this->rules = [
             'create' => [
                 'vehiculo_unidad' => 'required|max:6',
