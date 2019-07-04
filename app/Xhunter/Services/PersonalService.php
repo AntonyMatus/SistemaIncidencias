@@ -14,7 +14,7 @@ class PersonalService extends AService {
         try
         {
             if(!$this->isValidUnique($data
-            ['vehiculo_unidad'], 'vehiculos', 'vehiculo_unidad' ))
+            ['nombre_completo'], 'personal', 'nombre_completo' ))
             {
                 throw new \Exception('Ya existe un Vehiculo con el mismo nombre');
             }

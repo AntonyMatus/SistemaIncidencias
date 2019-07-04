@@ -7,7 +7,7 @@ use Xhunter\Repositories\Personal\PersonalRepository;
 use Xhunter\Services\PersonalService;
 use TJGazel\Toastr\Facades\Toastr;
 use Xhunter\Models\Cargo;
-use Xhunter\Models\Personal;
+
 
 class PersonalController extends Controller
 {
@@ -16,7 +16,6 @@ class PersonalController extends Controller
     public function __construct(PersonalRepository $repository, PersonalService $service)
     {
         $this->middleware('permission:personal.index');
-        $this->middleware('permission:personal.ver', ['only' => ['getVer']]);
         $this->middleware('permission:personal.crear', ['only' => ['getAgregar', 'postAgregar']]);
         $this->middleware('permission:personal.editar', ['only' => ['getEditar', 'postEditar']]);
         $this->middleware('permission:personal.eliminar', ['only' => ['getEliminar']]);
@@ -29,38 +28,22 @@ class PersonalController extends Controller
         $Personal = $this->repository->all();
         return view('personal.index',compact('Personal'));
     }
-    public function getVer($id)
-    {
-        $modelo = $this->repository->find($id);
-        if ($modelo !== null) {
-            return view()->make('personal.ver', compact('modelo'));
-        }
-
-        Toastr::error(_i('El registro seleccionado no existe'));
-
-        return redirect()->route('personal.index');
-    }
     public function getAgregar()
     {
         $Cargo = Cargo::all();
         return view('personal.agregar', compact('Cargo'));
     }
     public function postAgregar()
-    {
-       
+    {   
         $data = request()->all();
-        $personal = new Personal($data);
-        $personal->save();
-        Toastr::success('Los datos se han guardado con éxito.!','Creado con Exito');
-        return redirect()->route('personal.index'); 
-        /*$modelo = $this->service->create($data);
+        $modelo = $this->service->create($data);
         if (null !== $modelo) {
             Toastr::success('Los datos se han guardado con éxito.!','Creado con Exito');
             return redirect()->route('personal.index');
         } else {
             Toastr::warning($this->service->getMessages()->first(),'Upss Algo Salió Mal!');
             return redirect()->route('personal.agregar')->withInput();
-        }*/
+        }
     }
     public function getEditar($id)
     {
@@ -75,12 +58,11 @@ class PersonalController extends Controller
     public function postEditar($id)
     {
         $data = request()->all();
-        $personal = Personal::find($id);
+       /* $personal = Personal::find($id);
         $personal->update($data);
         Toastr::success(__('Registro actualizado'));
-        return redirect()->route('personal.index');
-       /* $response = $this->service->update($id, $data);
-
+        return redirect()->route('personal.index');*/
+       $response = $this->service->update($id, $data);
         if ($response) {
             Toastr::success(__('Registro actualizado'));
         } else {
@@ -89,7 +71,7 @@ class PersonalController extends Controller
                 'id' => $id
             ])->withInput();
         }
-        return redirect()->route('personal.index');*/
+        return redirect()->route('personal.index');
     }
     public function getEliminar($id)
     {

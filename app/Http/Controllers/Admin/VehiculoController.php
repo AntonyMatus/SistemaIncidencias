@@ -10,6 +10,7 @@ use Xhunter\Enumerable\EstatusVehiculo;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class VehiculoController extends Controller
 {
     protected $repository, $service;

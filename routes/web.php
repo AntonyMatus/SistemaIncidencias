@@ -64,7 +64,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
     Route::group(['prefix' => 'cargos'], function () {
         Route::get('', 'CargoController@getIndex')->name('cargos.index');
-        Route::get('ver/{id}', 'CargoController@getVer')->name('cargos.ver');
         Route::get('agregar', 'CargoController@getAgregar')->name('cargos.agregar');
         Route::post('agregar',  'CargoController@postAgregar')->name('cargos.agregar');
         Route::get('editar/{id?}', 'CargoController@getEditar')->name('cargos.editar');
@@ -74,7 +73,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
     Route::group(['prefix' => 'personal'], function () {
         Route::get('', 'PersonalController@getIndex')->name('personal.index');
-        Route::get('ver/{id}', 'PersonalController@getVer')->name('personal.ver');
         Route::get('agregar', 'PersonalController@getAgregar')->name('personal.agregar');
         Route::post('agregar',  'PersonalController@postAgregar')->name('personal.agregar');
         Route::get('editar/{id?}', 'PersonalController@getEditar')->name('personal.editar');

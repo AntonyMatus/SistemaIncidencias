@@ -45,9 +45,6 @@
         <td>{{ $user->apellido_materno }}</td>
         <td>{{ $user->cargo->cargo}}</td>
         <td>
-          <a class="btn btn-outline-info" href="{{ route('personal.ver',$user->id) }}">
-            <span class="fa fas fa-eye fa-eye-alt"></span>Ver
-          </a>
           <a class="btn btn-outline-primary" href="{{ route('personal.editar',$user->id) }}">
             <span class="fa fa-edit"></span>Editar
           </a>

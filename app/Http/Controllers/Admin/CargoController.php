@@ -15,7 +15,6 @@ class CargoController extends Controller
     public function __construct(CargoRepository $repository, CargosService $service)
     {
         $this->middleware('permission:cargos.index');
-        $this->middleware('permission:cargos.ver', ['only' => ['getVer']]);
         $this->middleware('permission:cargos.crear', ['only' => ['getAgregar', 'postAgregar']]);
         $this->middleware('permission:cargos.editar', ['only' => ['getEditar', 'postEditar']]);
         $this->middleware('permission:cargos.eliminar', ['only' => ['getEliminar']]);
@@ -26,17 +25,6 @@ class CargoController extends Controller
     {
         $Cargo = $this->repository->all();
         return view('cargos.index',compact('Cargo'));
-    }
-    public function getVer($id)
-    {
-        $modelo = $this->repository->find($id);
-        if ($modelo !== null) {
-            return view()->make('cargos.ver', compact('modelo'));
-        }
-
-        Toastr::error(_i('El registro seleccionado no existe'));
-
-        return redirect()->route('productos.index');
     }
     public function getAgregar()
     {

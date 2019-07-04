@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center">
-    <div class="card col-md-10 border-success">
+    <div class="card col-md-7 border-success">
         <h4 class="card-header text-center"><i class="fa fa-user-circle-o"></i>{{__('Ver Personal')}}
         </h4>
         <div class="card-body">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group row ">
-                <div class="col-md-10 offset-md-5">
+                <div class="col-md-7 offset-md-5">
                     <a href="{{ route('personal.index') }}" class="btn btn-outline-success">{{__('Volver')}}</a>
                 </div>
             </div>

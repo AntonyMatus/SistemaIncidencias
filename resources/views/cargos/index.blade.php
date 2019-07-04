@@ -37,9 +37,6 @@
                 <td>{{ ++$key }}</td>
                 <td>{{ $user->cargo }}</td>
                 <td>
-                  <a class="btn btn-outline-info" href="{{ route('cargos.ver',$user->id) }}">
-                    <span class="fa fas fa-eye fa-eye-alt"></span>Ver
-                  </a>
                   <a class="btn btn-outline-primary" href="{{ route('cargos.editar',$user->id) }}">
                     <span class="fa fa-edit"></span>Editar
                   </a>
@@ -91,7 +88,7 @@
                   type: "POST",
                   url: `{{url('admin/cargos/eliminar/${user_id}')}}`,
                   success: function (data) {
-                    $("#cargo_id" + user_id).remove();
+                    $("#user_id" + user_id).remove();
                     swalWithBootstrapButtons.fire(
                     'Eliminado!',
                     'Su Registro ha sido eliminado.',

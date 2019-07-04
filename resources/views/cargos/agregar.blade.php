@@ -1,6 +1,5 @@
 @extends('layouts.template')
 @section('styles')
-<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
 <style>
     .form-group.has-danger .form-control-label
     {
@@ -16,16 +15,6 @@
     <h4 class="card-header text-center"><i class="fa fa-fire-extinguisher"></i>{{__('Agregar Cargo')}}
     </h4>
     <div class="card-body">
-     @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-            </ul>
-        </div>
-    @endif
     <form action="{{ route('cargos.agregar') }}" id="form-agregar" method="POST" class="form-horizontal">
         @csrf
         <div class="form-group">
@@ -67,8 +56,8 @@
                     message: 'La longitud máxima es de 255 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[A-Za-z0-9\s]+$/,  
-                    message:"El campo Cargo solo soporta letras Mayusculas, Minusculas y Espacios"
+                    regexp: /^[A-Za-z\s]+$/,  
+                    message:"Solo se permiten Letrás"
                 }
             }
         }

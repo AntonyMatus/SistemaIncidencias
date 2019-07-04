@@ -1,7 +1,6 @@
 @extends('layouts.template')
 
 @section('styles')
-<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
 <style>
     .form-group.has-danger .form-control-label
     {
@@ -18,16 +17,6 @@
             <h4 class="card-header text-center"><i class="fa fa-user-circle-o"></i>{{__('Agregar Personal')}}
             </h4>
             <div class="card-body">
-             @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                </div>
-            @endif
             <form action="{{ route('personal.agregar') }}" id="form-agregar" method="POST" class="form-horizontal">
                 @csrf
                 <div class="row">
@@ -101,7 +90,7 @@ $('#form-agregar').formValidation({
                 },
                 regexp: {
                     regexp: /^[A-Za-z\s]+$/,  
-                    message:"El campo Cargo solo soporta letras Mayusculas, Minusculas y Espacios"
+                    message:"Solo se permiten Letrás"
                 }
             }
         },
@@ -116,7 +105,7 @@ $('#form-agregar').formValidation({
                 },
                 regexp: {
                     regexp: /^[A-Za-z\s]+$/,  
-                    message:"El campo Cargo solo soporta letras Mayusculas, Minusculas y Espacios"
+                    message:"Solo se permiten Letrás"
                 }
             }
         },
@@ -135,5 +124,3 @@ $('#form-agregar').formValidation({
     });
 })();
 </script>
-    
-@endsection
