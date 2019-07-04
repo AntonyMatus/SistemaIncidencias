@@ -21,40 +21,34 @@
     </div>
   </div>
 
-  @if ($message = Session::get('success'))
-  <div class="alert alert-success">
-  <p>{{ $message }}</p>
-  </div>
-@endif
-
 <table id="personal-table" class="table table-striped table-bordered" style="width:100%">
-    <thead>
-      <th>No</th>
-      <th>Nombre Completo</th>
-      <th>Apellido Paterno</th>
-      <th>Apellido Materno</th>
-      <th>Cargo</th>
-      <th width="280px">Acciones</th>
-    </thead>
-    <tbody>
-      @foreach ($Personal as $key => $user)
-      <tr id="user_id{{ $user->id }}">
-        <td>{{ ++$key }}</td>
-        <td>{{ $user->nombre_completo }}</td>
-        <td>{{ $user->apellido_paterno }}</td>
-        <td>{{ $user->apellido_materno }}</td>
-        <td>{{ $user->cargo->cargo}}</td>
-        <td>
-          <a class="btn btn-outline-primary" href="{{ route('personal.editar',$user->id) }}">
-            <span class="fa fa-edit"></span>Editar
-          </a>
-          <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$user->id}}">
-            <span class="fa fa-trash-o"></span>Eliminar
-          </a>
-        </td>
-      </tr>
-      @endforeach
-    </tbody>
+  <thead>
+    <th>No</th>
+    <th>Nombre Completo</th>
+    <th>Apellido Paterno</th>
+    <th>Apellido Materno</th>
+    <th>Cargo</th>
+    <th width="280px">Acciones</th>
+  </thead>
+  <tbody>
+    @foreach ($personal as $key => $user)
+    <tr id="user_id{{ $user->id }}">
+      <td>{{ ++$key }}</td>
+      <td>{{ $user->nombre_completo }}</td>
+      <td>{{ $user->apellido_paterno }}</td>
+      <td>{{ $user->apellido_materno }}</td>
+      <td>{{ $user->cargo->cargo}}</td>
+      <td>
+        <a class="btn btn-outline-primary" href="{{ route('personal.editar',$user->id) }}">
+          <span class="fa fa-edit"></span>Editar
+        </a>
+        <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$user->id}}">
+          <span class="fa fa-trash-o"></span>Eliminar
+        </a>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
   </table>
 @endsection
 @section('scripts')

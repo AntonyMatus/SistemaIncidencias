@@ -1,11 +1,6 @@
 @extends('layouts.template')
 @section('styles')
-<style>
-    .form-group.has-danger .form-control-label
-    {
-        color: #f44336;
-    }
-</style>
+<link rel="stylesheet" href="{{asset('vendor/formvalidation/formValidation.css')}}">
 @endsection
 @section('breadcrumbs', Breadcrumbs::render('cargos.agregar'))
 
@@ -15,7 +10,7 @@
     <h4 class="card-header text-center"><i class="fa fa-fire-extinguisher"></i>{{__('Agregar Cargo')}}
     </h4>
     <div class="card-body">
-    <form action="{{ route('cargos.agregar') }}" id="form-agregar" method="POST" class="form-horizontal">
+    <form action="{{ route('cargos.agregar') }}" id="form-agregar" method="POST" class="form-horizontal" autocomplete="off">
         @csrf
         <div class="form-group">
             <label for="cargo" class="form-control-label">{{__('Nombre del Cargo')}}</label>
@@ -56,7 +51,7 @@
                     message: 'La longitud máxima es de 255 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[A-Za-z\s]+$/,  
+                    regexp: /^[A-Za-z\s]+$/,
                     message:"Solo se permiten Letrás"
                 }
             }
@@ -74,9 +69,15 @@
         invalid: 'has-danger'
     }
     });
+
+    $('#cargo').keyup(function () {
+        let valor = $(this).val();
+        if (valor != '')
+        {
+            let nuevoValor = valor.toUpperCase();
+            $(this).val(nuevoValor);
+        }
+    });
 })();
 </script>
-@endsection 
-    
-
-
+@endsection

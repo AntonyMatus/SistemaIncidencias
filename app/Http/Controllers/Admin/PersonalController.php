@@ -6,8 +6,6 @@ use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Personal\PersonalRepository;
 use Xhunter\Services\PersonalService;
 use TJGazel\Toastr\Facades\Toastr;
-use Xhunter\Models\Cargo;
-
 
 class PersonalController extends Controller
 {
@@ -25,16 +23,17 @@ class PersonalController extends Controller
 
     public function getIndex()
     {
-        $Personal = $this->repository->all();
-        return view('personal.index',compact('Personal'));
+        $personal = $this->repository->all();
+        return view('personal.index', compact('personal'));
     }
+
     public function getAgregar()
     {
-        $Cargo = Cargo::all();
-        return view('personal.agregar', compact('Cargo'));
+        return view('personal.agregar');
     }
+
     public function postAgregar()
-    {   
+    {
         $data = request()->all();
         $modelo = $this->service->create($data);
         if (null !== $modelo) {
@@ -45,24 +44,24 @@ class PersonalController extends Controller
             return redirect()->route('personal.agregar')->withInput();
         }
     }
+
     public function getEditar($id)
     {
-        $Cargo = Cargo::all();
         $modelo = $this->repository->find($id);
+
         if (null !== $modelo) {
-            return view('personal.editar', compact('modelo','Cargo'));
+            return view('personal.editar', compact('modelo'));
         }
         Toastr::error(_i('Registro no encontrado'));
         return redirect()->route('personal.index');
     }
+
     public function postEditar($id)
     {
         $data = request()->all();
-       /* $personal = Personal::find($id);
-        $personal->update($data);
-        Toastr::success(__('Registro actualizado'));
-        return redirect()->route('personal.index');*/
-       $response = $this->service->update($id, $data);
+
+        $response = $this->service->update($id, $data);
+
         if ($response) {
             Toastr::success(__('Registro actualizado'));
         } else {
@@ -73,6 +72,7 @@ class PersonalController extends Controller
         }
         return redirect()->route('personal.index');
     }
+
     public function getEliminar($id)
     {
         $deleted = $this->service->delete($id);

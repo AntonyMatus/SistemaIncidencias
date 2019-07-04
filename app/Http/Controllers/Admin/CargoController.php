@@ -6,7 +6,6 @@ use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Cargos\CargoRepository;
 use Xhunter\Services\CargosService;
 use TJGazel\Toastr\Facades\Toastr;
-use Xhunter\Models\Cargo;
 
 class CargoController extends Controller
 {
@@ -21,15 +20,18 @@ class CargoController extends Controller
         $this->repository = $repository;
         $this->service = $service;
     }
+
     public function getIndex()
     {
-        $Cargo = $this->repository->all();
-        return view('cargos.index',compact('Cargo'));
+        $cargo = $this->repository->all();
+        return view('cargos.index',compact('cargo'));
     }
+
     public function getAgregar()
     {
         return view('cargos.agregar');
     }
+
     public function postAgregar()
     {
         $data = request()->all();
@@ -43,6 +45,7 @@ class CargoController extends Controller
             return redirect()->route('cargos.agregar')->withInput();
         }
     }
+
     public function getEditar($id)
     {
         $modelo = $this->repository->find($id);
@@ -52,6 +55,7 @@ class CargoController extends Controller
         Toastr::error(_i('Registro no encontrado'));
         return redirect()->route('cargos.index');
     }
+
     public function postEditar($id)
     {
         $data = request()->all();
@@ -67,6 +71,7 @@ class CargoController extends Controller
         }
         return redirect()->route('cargos.index');
     }
+
     public function getEliminar($id)
     {
         $deleted = $this->service->delete($id);

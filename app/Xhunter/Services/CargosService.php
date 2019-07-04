@@ -1,19 +1,23 @@
 <?php
 
 namespace Xhunter\Services;
+
 use Xhunter\Abstracts\AService;
 use Xhunter\Repositories\Cargos\CargoRepository as CargosRepository;
 use Xhunter\Validators\Cargos\CargosValidator as CargosValidator;
 
 class CargosService extends AService
 {
-    public function __construct(CargosRepository $repository, CargosValidator $validator) {
+
+    public function __construct(CargosRepository $repository, CargosValidator $validator)
+    {
         parent::__construct();
         $this->repository = $repository;
         $this->validator = $validator;
     }
 
-    public function create(array $data) {
+    public function create(array $data)
+    {
         try
         {
             if (!$this->isValidUnique($data['cargo'], 'cargos', 'cargo'))
@@ -39,14 +43,17 @@ class CargosService extends AService
         }
     }
 
-    public function update($id, array $data) {
-        try {
-            if($this->validator->with($data)->success('update')) {
+    public function update($id, array $data)
+    {
+        try
+        {
+            if ($this->validator->with($data)->success('update')) {
                 \DB::beginTransaction();
                 $this->repository->update($id, $data);
                 \DB::commit();
                 return $this->repository->find($id);
             }
+
             $this->messages = $this->validator->getErrors();
             return false;
         } catch (\Exception $e) {
@@ -57,8 +64,10 @@ class CargosService extends AService
         }
     }
 
-    public function delete($id) {
-        try{
+    public function delete($id)
+    {
+        try
+        {
             \DB::beginTransaction();
             $this->repository->delete($id);
             \DB::commit();

@@ -19,11 +19,6 @@
       </div>
     </div>
   </div>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-        <p>{{ $message }}</p>
-        </div>
-    @endif
 
     <table id="cargos-table" class="table table-striped table-bordered" style="width:100%">
             <thead>
@@ -32,7 +27,7 @@
               <th width="280px">Acciones</th>
             </thead>
             <tbody>
-              @foreach ($Cargo as $key => $user)
+              @foreach ($cargo as $key => $user)
               <tr id="user_id{{ $user->id }}">
                 <td>{{ ++$key }}</td>
                 <td>{{ $user->cargo }}</td>

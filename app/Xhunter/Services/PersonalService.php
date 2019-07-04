@@ -1,23 +1,24 @@
 <?php
-namespace Xhunter\Services;
-use Xhunter\Abstracts\AService;
-use Xhunter\Repositories\Personal\PersonalRepository as PersonalsRepository;
-use Xhunter\Validators\Personal\PersonalValidator as PersonalsValidator;
 
-class PersonalService extends AService {
-    public function __construct(PersonalsRepository $repository, PersonalsValidator $validator){
+namespace Xhunter\Services;
+
+use Xhunter\Abstracts\AService;
+use Xhunter\Repositories\Personal\PersonalRepository as PersonalRepository;
+use Xhunter\Validators\Personal\PersonalValidator as PersonalValidator;
+
+class PersonalService extends AService
+{
+    public function __construct(PersonalRepository $repository, PersonalValidator $validator)
+    {
         parent::__construct();
         $this->repository = $repository;
         $this->validator = $validator;
     }
-    public function create(array $data){
+
+    public function create(array $data)
+    {
         try
         {
-            if(!$this->isValidUnique($data
-            ['nombre_completo'], 'personal', 'nombre_completo' ))
-            {
-                throw new \Exception('Ya existe un Vehiculo con el mismo nombre');
-            }
             if($this->validator->with($data)->success('create')){
                 \DB::beginTransaction();
                 $result = $this->repository->create($data);
@@ -35,16 +36,18 @@ class PersonalService extends AService {
             return null;
         }
     }
-    public function update($id, array $data) {
-        try { 
-            
-            if($this->validator->with($data)->success('update')) {
+
+    public function update($id, array $data)
+    {
+        try
+        {
+            if ($this->validator->with($data)->success('update')) {
                 \DB::beginTransaction();
-                
                 $this->repository->update($id, $data);
                 \DB::commit();
                 return $this->repository->find($id);
             }
+
             $this->messages = $this->validator->getErrors();
             return false;
         } catch (\Exception $e) {
@@ -54,8 +57,11 @@ class PersonalService extends AService {
             return false;
         }
     }
-    public function delete($id) {
-        try{
+
+    public function delete($id)
+    {
+        try
+        {
             \DB::beginTransaction();
             $this->repository->delete($id);
             \DB::commit();
