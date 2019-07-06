@@ -50,6 +50,29 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
         $(document).ready(function() {
+          var table = $('#cargos-table').DataTable({
+        language: {
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": "Mostrando registros del  _START_ al  _END_ de un total _TOTAL_",
+          "infoEmpty": "Mostrando registros del 0 al  0 de un total de  0 registros",
+          "infoFiltered": "(Filtrado de un total de  _MAX_ registros)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+              "first": "Primero",
+              "last": "Ultimo",
+              "next": "Siguiente",
+              "previous": "Anterior"
+                }
+              },
+          });
+
           $('#cargos-table').DataTable();
           $.ajaxSetup({
             headers: {

@@ -100,31 +100,38 @@ Breadcrumbs::for('cargos.editar', function ($trail) {
     $trail->push('Editar');
 });
 
-//Cargos/Ver
-Breadcrumbs::for('cargos.ver', function ($trail, $cargo) {
-    $trail->parent('cargos');
-    $trail->push($cargo);
-});
 //Personal
 Breadcrumbs::for('personal', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Personal', route('personal.index'));
 });
 
-//Cargos/Agregar
+//Personal/Agregar
 Breadcrumbs::for('personal.agregar', function ($trail) {
     $trail->parent('personal');
     $trail->push('Agregar', route('personal.agregar'));
 });
 
-//Cargos/Editar
+//Personal/Editar
 Breadcrumbs::for('personal.editar', function ($trail) {
     $trail->parent('personal');
     $trail->push('Editar');
 });
 
-//Cargos/Ver
-Breadcrumbs::for('personal.ver', function ($trail, $nombre_completo) {
-    $trail->parent('personal');
-    $trail->push($nombre_completo);
+//Emergencias
+Breadcrumbs::for('emergencias', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Emergencias', route('emergencias.index'));
+});
+
+//Emergencias/Agregar
+Breadcrumbs::for('emergencias.agregar', function ($trail) {
+    $trail->parent('emergencias');
+    $trail->push('Agregar', route('emergencias.agregar'));
+});
+
+//Emergencias/Editar
+Breadcrumbs::for('emergencias.editar', function ($trail) {
+    $trail->parent('emergencias');
+    $trail->push('Editar');
 });

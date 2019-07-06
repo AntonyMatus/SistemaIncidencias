@@ -130,5 +130,25 @@ return [
                 ]
             ]
         ],
+        [
+            'titulo' => 'Emergencias',
+            'grupo_ruta' => 'emergencias',
+            'icon' => 'fa fa-building-o',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración del Tipos de Emergencias',
+            'submenu' => [
+                [
+                    'ruta' => 'emergencias.index',
+                    'label' => 'Lista de Emergencias',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'emergencias.agregar',
+                    'label' => 'Agregar Emergencia',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
     ]
 ];
