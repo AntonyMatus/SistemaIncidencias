@@ -1,5 +1,7 @@
 <?php
+
 namespace Laxcore\Http\Controllers\Admin;
+
 use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Emergencias\EmergenciaRepository;
 use Xhunter\Services\EmergenciasService;
@@ -8,12 +10,13 @@ use TJGazel\Toastr\Facades\Toastr;
 class EmergenciasController extends Controller
 {
     protected $repository, $service;
+
     public function __construct(EmergenciaRepository $repository, EmergenciasService $service)
     {
-        $this->middleware('permission:emergencia.index');
-        $this->middleware('permission:emergencia.crear', ['only' => ['getAgregar', 'postAgregar']]);
-        $this->middleware('permission:emergencia.editar', ['only' => ['getEditar', 'postEditar']]);
-        $this->middleware('permission:emergencia.eliminar', ['only' => ['getEliminar']]);
+        $this->middleware('permission:emergencias.index');
+        $this->middleware('permission:emergencias.crear', ['only' => ['getAgregar', 'postAgregar']]);
+        $this->middleware('permission:emergencias.editar', ['only' => ['getEditar', 'postEditar']]);
+        $this->middleware('permission:emergencias.eliminar', ['only' => ['getEliminar']]);
         $this->repository = $repository;
         $this->service = $service;
     }
@@ -56,20 +59,21 @@ class EmergenciasController extends Controller
     {
         $data = request()->all();
         $response = $this->service->update($id, $data);
-        if ($response) {
+        if ($response) 
+        {
             Toastr::success(__('Registro actualizado'));
         } else {
             Toastr::error($this->service->getMessages()->first());
-            return redirect()->route('emergencias.editar', [
-                'id' => $id
-            ])->withInput();
+            return redirect()->route('emergencias.editar', ['id' => $id])->withInput();
         }
         return redirect()->route('emergencias.index');
     }
+    
     public function getEliminar($id)
     {
         $deleted = $this->service->delete($id);
-        if ($deleted == false) {
+        if ($deleted == false) 
+        {
             Toastr::error(__($this->service->getMessages()->first('errors')));
         }
         return redirect()->route('emergencias.index');

@@ -14,6 +14,7 @@ class EmergenciasService extends AService
         $this->repository = $repository;
         $this->validator = $validator;
     }
+
     public function create(array $data)
     {
         try {
@@ -21,7 +22,8 @@ class EmergenciasService extends AService
             {
                 throw new \Exception('Ya existe un Tipo de Emergencia con el mismo nombre.');
             }
-            if($this->validator->with($data)->success('create')){
+            if($this->validator->with($data)->success('create'))
+            {
                 \DB::beginTransaction();
                 $result = $this->repository->create($data);
                 \DB::commit();
@@ -29,7 +31,6 @@ class EmergenciasService extends AService
             }
             $this->messages = $this->validator->getErrors();
             return null;
-
         } 
         catch (\Exception $e) 
         {
@@ -39,6 +40,7 @@ class EmergenciasService extends AService
            return null; 
         }
     }
+
     public function update($id, array $data)
     {
         try {
@@ -58,6 +60,7 @@ class EmergenciasService extends AService
             return false;
         }
     }
+
     public function delete($id)
     {
         try {
@@ -65,7 +68,8 @@ class EmergenciasService extends AService
             $this->repository->delete($id);
             \DB::commit();
             return true;
-        } catch (\Exception $e) {
+            } catch (\Exception $e)
+            {
             \DB::rollBack();
             \Log::error($e);
             $this->addMessage('Error', $e->getMessage());

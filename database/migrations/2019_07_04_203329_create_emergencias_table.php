@@ -14,7 +14,7 @@ class CreateEmergenciasTable extends Migration
     public function up()
     {
         Schema::create('emergencias', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('tipo_emergencia', 255);
             $table->timestamps();
         });

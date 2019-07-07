@@ -1,6 +1,7 @@
 <?php
 
 namespace Xhunter\Repositories\Emergencias;
+
 use Xhunter\Abstracts\ARepository;
 use Xhunter\Models\Emergencia;
 use Xhunter\Contracts\IRepository;

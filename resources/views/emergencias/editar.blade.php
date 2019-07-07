@@ -46,14 +46,14 @@
                 tipo_emergencia: {
                     validators: {
                         notEmpty: {
-                            message: 'El campo Tipo Emergencia  es requerido!.'
+                            message: 'El campo Nombre de la Emergencia es requerido!.'
                         },
                         stringLength: {
                             max: 255,
                             message: 'La longitud máxima es de 255 caracteres!'
                         },
                         regexp: {
-                            regexp: /^[A-Za-z\s]+$/,
+                            regexp: /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/,
                             message:"Solo se permiten Letrás"
                         }
                     }

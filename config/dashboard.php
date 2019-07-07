@@ -136,7 +136,7 @@ return [
             'icon' => 'fa fa-building-o',
             'is_link' => false,
             'item_in_submenu' => true,
-            'descripcion' => 'Módulo de Administración del Tipos de Emergencias',
+            'descripcion' => 'Módulo de Administración del Tipos de Emergencia',
             'submenu' => [
                 [
                     'ruta' => 'emergencias.index',
