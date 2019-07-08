@@ -52,7 +52,7 @@
                     message: 'La longitud máxima es de 255 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/,
+                    regexp: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
                     message:"Solo se permiten Letrás con o sin acento!"
                 }
             }

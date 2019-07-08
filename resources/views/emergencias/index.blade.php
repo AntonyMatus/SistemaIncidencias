@@ -50,80 +50,80 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var table = $('#emergencias-table').DataTable({ 
-          language: {
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando registros del  _START_ al  _END_ de un total _TOTAL_",
-                    "infoEmpty": "Mostrando registros del 0 al  0 de un total de  0 registros",
-                    "infoFiltered": "(Filtrado de un total de  _MAX_ registros)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Registros",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": 
-                    {
-                      "first": "Primero",
-                      "last": "Ultimo",
-                      "next": "Siguiente",
-                      "previous": "Anterior"
-                    }
-                  },
-                });
-            $('#emergencias-table').DataTable();
-            $.ajaxSetup({
-              headers: 
+$(document).ready(function() {
+  var table = $('#emergencias-table').DataTable({
+    language: {
+              "decimal": "",
+              "emptyTable": "No hay información",
+              "info": "Mostrando registros del  _START_ al  _END_ de un total _TOTAL_",
+              "infoEmpty": "Mostrando registros del 0 al  0 de un total de  0 registros",
+              "infoFiltered": "(Filtrado de un total de  _MAX_ registros)",
+              "infoPostFix": "",
+              "thousands": ",",
+              "lengthMenu": "Mostrar _MENU_ Registros",
+              "loadingRecords": "Cargando...",
+              "processing": "Procesando...",
+              "search": "Buscar:",
+              "zeroRecords": "Sin resultados encontrados",
+              "paginate":
               {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
               }
-              });
-            $(document).on('click', '.button', function (e) {
-              e.preventDefault();
-              var user_id = $(this).data('id');
-              const swalWithBootstrapButtons = swal.mixin({
-              customClass: 
-              {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-              },
-              buttonsStyling: false,
-              })
-              swalWithBootstrapButtons.fire({
-              title: '¿Estás seguro?',
-              text: "¡No podrás revertir esto!",
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonText: '¡Sí, bórralo!',
-              cancelButtonText: 'No, cancela!',
-              reverseButtons: true
-              }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: `{{url('admin/emergencias/eliminar/${user_id}')}}`,
-                    success: function (data) {
-                      $("#emergencias_id" + user_id).remove();
-                      swalWithBootstrapButtons.fire(
-                      'Eliminado!',
-                      'Su Registro ha sido eliminado.',
-                      'success'
-                      )
-                    }
-                });
-              } else if (result.dismiss === swal.DismissReason.cancel)
-               {
-                swalWithBootstrapButtons.fire(
-                'Cancelado',
-                'Tu Registro es seguro :)',
-                'error'
-                  )
-                }
-              });
-            });
-          });
-  </script>
+            },
+  });
+  $('#emergencias-table').DataTable();
+    $.ajaxSetup({
+      headers:
+      {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+      });
+  $(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var user_id = $(this).data('id');
+    const swalWithBootstrapButtons = swal.mixin({
+    customClass:
+    {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false,
+    })
+    swalWithBootstrapButtons.fire({
+    title: '¿Estás seguro?',
+    text: "¡No podrás revertir esto!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: '¡Sí, bórralo!',
+    cancelButtonText: 'No, cancela!',
+    reverseButtons: true
+    }).then((result) => {
+    if (result.value) {
+      $.ajax({
+          type: "POST",
+          url: `{{url('admin/emergencias/eliminar/${user_id}')}}`,
+          success: function (data) {
+            $("#emergencias_id" + user_id).remove();
+            swalWithBootstrapButtons.fire(
+            'Eliminado!',
+            'Su Registro ha sido eliminado.',
+            'success'
+            )
+          }
+      });
+    } else if (result.dismiss === swal.DismissReason.cancel)
+      {
+      swalWithBootstrapButtons.fire(
+      'Cancelado',
+      'Tu Registro es seguro :)',
+      'error'
+        )
+      }
+    });
+  });
+});
+</script>
 @endsection
