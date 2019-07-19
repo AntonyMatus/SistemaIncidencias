@@ -135,3 +135,27 @@ Breadcrumbs::for('emergencias.editar', function ($trail) {
     $trail->parent('emergencias');
     $trail->push('Editar');
 });
+
+//Registros
+Breadcrumbs::for('registros', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('registros', route('registros.index'));
+});
+
+//Registros/Agregar
+Breadcrumbs::for('registros.agregar', function ($trail) {
+    $trail->parent('registros');
+    $trail->push('Agregar', route('registros.agregar'));
+});
+
+//Registros/Editar
+Breadcrumbs::for('registros.editar', function ($trail) {
+    $trail->parent('registros');
+    $trail->push('Editar');
+});
+
+//Registros/Ver
+Breadcrumbs::for('registros.ver', function ($trail, $fecha_reporte) {
+    $trail->parent('registros');
+    $trail->push($fecha_reporte);
+});

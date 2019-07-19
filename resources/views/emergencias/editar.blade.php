@@ -34,27 +34,28 @@
 <script src="{{asset('vendor/formvalidation/formValidation.min.js')}}"></script>
 <script src="{{asset('vendor/formvalidation/framework/bootstrap4.min.js')}}"></script>
 <script>
-    (function() {
-        $('#form-editar').formValidation({
-        framework: "bootstrap4",
-        button: {
-            selector: '#btnSave',
-            disabled: 'disabled'
-        },
-        icon: null,
-        fields: {
-            tipo_emergencia: {
-                validators: {
-                    notEmpty: {
-                        message: 'El campo Nombre de la Emergencia es requerido!'
-                    },
-                    stringLength: {
-                        max: 255,
-                        message: 'La longitud máxima es de 255 caracteres!'
-                    },
-                    regexp: {
-                        regexp: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
-                        message:"Solo se permiten Letrás!"
+        (function() {
+            $('#form-editar').formValidation({
+            framework: "bootstrap4",
+            button: {
+                selector: '#btnSave',
+                disabled: 'disabled'
+            },
+            icon: null,
+            fields: {
+                tipo_emergencia: {
+                    validators: {
+                        notEmpty: {
+                            message: 'El campo Nombre de la Emergencia es requerido!.'
+                        },
+                        stringLength: {
+                            max: 255,
+                            message: 'La longitud máxima es de 255 caracteres!'
+                        },
+                        regexp: {
+                            regexp: /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/,
+                            message:"Solo se permiten Letrás"
+                        }
                     }
                 }
             }

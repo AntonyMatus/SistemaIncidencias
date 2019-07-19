@@ -150,5 +150,25 @@ return [
                 ]
             ]
         ],
+        [
+            'titulo' => 'Registros',
+            'grupo_ruta' => 'registros',
+            'icon' => 'fa fa-book',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración del Registros de Emergencia',
+            'submenu' => [
+                [
+                    'ruta' => 'registros.index',
+                    'label' => 'Lista de Registros',
+                    'icon' => 'fa fa-list'
+                ],
+                [
+                    'ruta' => 'registros.agregar',
+                    'label' => 'Agregar Registro',
+                    'icon' => 'fa fa-plus'
+                ]
+            ]
+        ],
     ]
 ];

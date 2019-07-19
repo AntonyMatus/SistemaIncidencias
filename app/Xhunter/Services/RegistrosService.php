@@ -3,12 +3,12 @@
 namespace Xhunter\Services;
 
 use Xhunter\Abstracts\AService;
-use Xhunter\Repositories\Personal\PersonalRepository as PersonalRepository;
-use Xhunter\Validators\Personal\PersonalValidator as PersonalValidator;
+use Xhunter\Repositories\Registros\RegistroRepository as RegistrosRepository;
+use Xhunter\Validators\Registros\RegistrosValidator as RegistrosValidator;
 
-class PersonalService extends AService
-{
-    public function __construct(PersonalRepository $repository, PersonalValidator $validator)
+class RegistrosService extends AService {
+
+    public function __construct(RegistrosRepository $repository, RegistrosValidator $validator)
     {
         parent::__construct();
         $this->repository = $repository;
@@ -22,6 +22,7 @@ class PersonalService extends AService
             if($this->validator->with($data)->success('create')){
                 \DB::beginTransaction();
                 $result = $this->repository->create($data);
+                $result->vehiculos()->attach($data['vehiculo_unidad']);
                 \DB::commit();
                 return $result;
             }
@@ -36,14 +37,15 @@ class PersonalService extends AService
             return null;
         }
     }
-
+    
     public function update($id, array $data)
     {
-        try
-        {
-            if ($this->validator->with($data)->success('update')) {
+        try {
+            if($this->validator->with($data)->success('update')){
                 \DB::beginTransaction();
-                $this->repository->update($id, $data);
+              $this->repository->update($id, $data);
+             $result = $this->repository->find($id);
+             $result->vehiculos()->sync($data['vehiculo_unidad']);
                 \DB::commit();
                 return $this->repository->find($id);
             }
@@ -53,23 +55,24 @@ class PersonalService extends AService
             \Log::error($e);
             \DB::rollBack();
             $this->addMessage('Error', $e->getMessage());
-            return false;
         }
     }
 
     public function delete($id)
     {
-        try
-        {
+        try {
             \DB::beginTransaction();
+            $result = $this->repository->find($id);
+            $result->vehiculos()->detach();
             $this->repository->delete($id);
             \DB::commit();
             return true;
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollBack();
             \Log::error($e);
             $this->addMessage('Error', $e->getMessage());
             return false;
         }
     }
+
 }

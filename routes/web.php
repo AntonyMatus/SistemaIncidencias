@@ -88,4 +88,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('editar/{id?}','EmergenciasController@postEditar')->name('emergencias.editar');
         Route::post('eliminar/{id?}','EmergenciasController@getEliminar')->name('emergencias.eliminar');
     });
+
+    Route::group(['prefix' => 'registros'], function () {
+        Route::get('', 'RegistroController@getIndex')->name('registros.index');
+        Route::get('ver/{id}', 'RegistroController@getVer')->name('registros.ver');
+        Route::get('agregar', 'RegistroController@getAgregar')->name('registros.agregar');
+        Route::post('agregar',  'RegistroController@postAgregar')->name('registros.agregar');
+        Route::get('editar/{id?}', 'RegistroController@getEditar')->name('registros.editar');
+        Route::post('editar/{id?}','RegistroController@postEditar')->name('registros.editar');
+        Route::post('eliminar/{id?}','RegistroController@getEliminar')->name('registros.eliminar');
+    });
 });

@@ -14,7 +14,7 @@ class CreatePersonalTable extends Migration
     public function up()
     {
         Schema::create('personal', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nombre_completo',255);
             $table->string('apellido_paterno',255);
             $table->string('apellido_materno',255)->nullable();

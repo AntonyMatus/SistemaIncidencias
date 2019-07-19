@@ -17,4 +17,9 @@ class Vehiculo extends Model
         'placas',
         'estatus_vehiculo'
     ];
+
+    public function registro()
+    {
+        return $this->belongsToMany(Registro::class,'reportes_unidades');
+    }
 }
