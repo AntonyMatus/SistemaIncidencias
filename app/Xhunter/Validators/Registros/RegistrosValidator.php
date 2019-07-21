@@ -12,8 +12,8 @@ class RegistrosValidator extends AValidator
         $this->messages = [
             'personal_id.required' => 'El Personal es requerido',
             'personal_id.exists' => 'El personal seleccionado no existe',
-            //'vehiculos_id.required' => 'El vehiculo es requerido',
-            //'vehiculos_id.exists' => 'El vehiculo seleccionado no existe',
+            'vehiculos_id.required' => 'El vehiculo es requerido',
+            'vehiculos_id.exists' => 'El vehiculo seleccionado no existe',
             'emergencias_id.required' => 'La Emergencia es requerido',
             'emergencias_id.exists' => 'La emergencia seleccionada no existe',
             'emergencia.required' => 'La Emergencia es requerida',
@@ -38,7 +38,6 @@ class RegistrosValidator extends AValidator
         $this->rules = [
             'create' => [
                 'personal_id' => 'required|exists:personal,id',
-               // 'vehiculos_id' => 'required|exists:vehiculos,id',
                 'emergencias_id' => 'required|exists:emergencias,id',
                 'emergencia' => ['required', 'string', 'max:255','regex:/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/'],
                 'descripción_emergencia' => ['required', 'string', 'max:255','regex:/^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]+$/'],
@@ -51,7 +50,6 @@ class RegistrosValidator extends AValidator
             ],
             'update' => [
                 'personal_id' => 'required|exists:personal,id',
-               // 'vehiculos_id' => 'required|exists:vehiculos,id',
                 'emergencias_id' => 'required|exists:emergencias,id',
                 'emergencia' => ['required', 'string', 'max:255','regex:/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/'],
                 'descripción_emergencia' => ['required', 'string', 'max:255','regex:/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/'],

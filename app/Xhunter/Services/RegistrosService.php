@@ -43,9 +43,8 @@ class RegistrosService extends AService {
         try {
             if($this->validator->with($data)->success('update')){
                 \DB::beginTransaction();
-              $this->repository->update($id, $data);
-             $result = $this->repository->find($id);
-             $result->vehiculos()->sync($data['vehiculo_unidad']);
+             $result = $this->repository->update($id, $data);
+             $result = $this->repository->find($id)->vehiculos()->sync($data['vehiculo_unidad']);
                 \DB::commit();
                 return $this->repository->find($id);
             }

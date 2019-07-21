@@ -6,6 +6,7 @@ use Laxcore\Http\Controllers\Controller;
 use Xhunter\Repositories\Registros\RegistroRepository;
 use Xhunter\Services\RegistrosService;
 use TJGazel\Toastr\Facades\Toastr;
+use function Opis\Closure\serialize;
 
 class RegistroController extends Controller
 {
@@ -30,15 +31,13 @@ class RegistroController extends Controller
     public function getVer($id)
     {
         $modelo = $this->repository->find($id);
-       
-         foreach($modelo->vehiculos as $vehiculos)
-        {
-            $unidades = $vehiculos->vehiculo_unidad;
-        }
-
+        $unidades = $modelo->vehiculos->pluck('vehiculo_unidad');
+        $unidad = str_replace('[', '', $unidades);
+        $unidad = str_replace(']', '', $unidad);
+        $sub_estacion =  \Xhunter\Enumerable\SubEstaciones::getSubEstaciones($modelo->sub_estaciones);
         if($modelo !== null)
         {
-            return view()->make('registros.ver', compact('modelo', 'unidades'));
+            return view()->make('registros.ver', compact('modelo', 'unidad','sub_estacion'));
         }
         Toastr::error(_i('El registro seleccionado no existe'));
         return redirect()->route('registros.index');

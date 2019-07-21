@@ -27,23 +27,23 @@
       <th>FECHA</th>
       <th>TIPO DE EMERGENCIA</th>
       <th>PERSONAL</th>
-      <th width="280px">Acciones</th>
+      <th width="230px">Acciones</th>
     </thead>
     <tbody>
-      @foreach ($registros as $key => $user)
-      <tr id="registro_id{{ $user->id }}">
+      @foreach ($registros as $key => $registro)
+      <tr id="registro_id{{ $registro->id }}">
         <td>{{ ++$key }}</td>
-        <td>{{$user->hora_salida}}</td>
-        <td>{{ $user->fecha_reporte }}</td>
-        <td>{{ $user->emergencias->tipo_emergencia}}</td>
-        <td>{{ $user->personal->nombre_completo}}</td>
+        <td>{{$registro->hora_salida}}</td>
+        <td>{{ $registro->fecha_reporte }}</td>
+        <td>{{ $registro->emergencias->tipo_emergencia}}</td>
+        <td>{{ $registro->personal->nombre_completo}}</td>
         <td>
-         <a class="btn btn-outline-info" href="{{ route('registros.ver', $user->id)}}">
+         <a class="btn btn-outline-info" href="{{ route('registros.ver', $registro->id)}}">
         <span class="fa fas fa-eye fa-eye-alt"></span>Ver
-          <a class="btn btn-outline-primary" href="{{ route('registros.editar',$user->id) }}">
+          <a class="btn btn-outline-primary" href="{{ route('registros.editar', $registro->id) }}">
             <span class="fa fa-edit"></span>Editar
           </a>
-          <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$user->id}}">
+          <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$registro->id}}">
             <span class="fa fa-trash-o"></span>Eliminar
           </a>
         </td>
