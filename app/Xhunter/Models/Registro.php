@@ -14,12 +14,17 @@ class Registro extends Model
         'sub_estaciones',
         'emergencia',
         'descripción_emergencia',
-        'dirección',
+        'calle',
+        'num',
+        'colonia',
+        'entre_calle',
         'num_escoltas',
         'personas_atendidas',
         'hora_salida',
         'hora_retorno',
-        'fecha_reporte'
+        'fecha_reporte',
+        'tipo_servicio'
+    
     ];
 
     public function personal()
@@ -29,7 +34,7 @@ class Registro extends Model
 
     public function vehiculos()
     {
-        return $this->belongsToMany(Vehiculo::class,'reportes_unidades');
+        return $this->belongsToMany(Vehiculo::class,'reportes_unidades')->withTimestamps();
     }
 
     public function emergencias()

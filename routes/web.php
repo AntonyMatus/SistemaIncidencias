@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,16 +41,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::get('editar/{id?}', 'RoleController@getEditar')->name('roles.editar');
         Route::post('editar/{id?}','RoleController@postEditar')->name('roles.editar');
         Route::post('eliminar/{id?}','RoleController@postEliminar')->name('roles.eliminar');
-    });
-
-    Route::group(['prefix' => 'productos'], function () {
-        Route::get('', 'ProductoController@getIndex')->name('productos.index');
-        Route::get('ver/{id}', 'ProductoController@getVer')->name('productos.ver');
-        Route::get('agregar', 'ProductoController@getAgregar')->name('productos.agregar');
-        Route::post('agregar',  'ProductoController@postAgregar')->name('productos.agregar');
-        Route::get('editar/{id?}', 'ProductoController@getEditar')->name('productos.editar');
-        Route::post('editar/{id?}','ProductoController@postEditar')->name('productos.editar');
-        Route::post('eliminar/{id?}','ProductoController@getEliminar')->name('productos.eliminar');
     });
 
     Route::group(['prefix' => 'vehiculos'], function () {
@@ -98,4 +89,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::post('editar/{id?}','RegistroController@postEditar')->name('registros.editar');
         Route::post('eliminar/{id?}','RegistroController@getEliminar')->name('registros.eliminar');
     });
+
+    Route::group(['prefix' => 'reporte'], function () {
+        Route::get('', 'ReporteController@getIndex')->name('reporte.index');
+        Route::post('generar', 'ReporteController@postGenerar')->name('reporte.generar');
+        Route::post('semanal', 'ReporteController@postSemanal')->name('reporte.semanal');
+        Route::post('mensual', 'ReporteController@postMensual')->name('reporte.mensual');
+        Route::post('semanal_vehiculo', 'ReporteController@postSemanalVehiculo')->name('reporte.vehiculo_semanal');
+        Route::post('mensual_vehiculo', 'ReporteController@postMensualVehiculo')->name('reporte.mensual_vehiculo');
+        Route::post('semanal_impricedente', 'ReporteController@postSemanalImprocedente')->name('reporte.improcedente_semanal');
+        Route::post('colonia', 'ReporteController@postColonia')->name('reporte.colonia');
+        });
+    
 });

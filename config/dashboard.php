@@ -51,26 +51,6 @@ return [
             ]
         ],
         [
-            'titulo' => 'Productos',
-            'grupo_ruta' => 'productos',
-            'icon' => 'fa fa-shopping-cart',
-            'is_link' => false,
-            'item_in_submenu' => true,
-            'descripcion' => 'Módulo de Administración de Productos',
-            'submenu' => [
-                [
-                    'ruta' => 'productos.index',
-                    'label' => 'Lista de Productos',
-                    'icon' => 'fa fa-list'
-                ],
-                [
-                    'ruta' => 'productos.agregar',
-                    'label' => 'Agregar Producto',
-                    'icon' => 'fa fa-plus'
-                ]
-            ]
-        ],
-        [
             'titulo' => 'Vehiculos',
             'grupo_ruta' => 'vehiculos',
             'icon' => 'fa fa-car',
@@ -168,6 +148,22 @@ return [
                     'label' => 'Agregar Registro',
                     'icon' => 'fa fa-plus'
                 ]
+            ]
+        ],
+        [
+            'titulo' => 'Reportes',
+            'grupo_ruta' => 'reporte',
+            'icon' => 'fa fa-print',
+            'is_link' => false,
+            'item_in_submenu' => true,
+            'descripcion' => 'Módulo de Administración de Reportes',
+            'submenu' => [
+                [
+                    'ruta' => 'reporte.index',
+                    'label' => 'Generar Reporte',
+                    'icon' => 'fa fa-list'
+                ],
+               
             ]
         ],
     ]

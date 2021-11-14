@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a href="/" style="margin-right: 0rem;" class="navbar-brand"><img src="{{asset('img/app.png')}}" alt="icono del sitio"></a><a href="/" style="color: #333;">{{__('Laxcore')}}</a>
+          <a  style="margin-right: 0rem;" class="navbar-brand"><img src="{{asset('img/app.png')}}" alt="icono del sitio"></a><a href="/" style="color: #333;">{{__('Laxcore')}}</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <i class="lni-menu"></i>
           </button>
@@ -70,20 +70,6 @@
                   Contact
                 </a>
               </li>
-              @if (Route::has('login'))
-                @auth
-                  {{-- <a class="nav-link" href="{{ url('/home') }}">Home</a> --}}
-                @else
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
-                  </li>
-                  @if (Route::has('register'))
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
-                  @endif
-                @endauth
-              @endif
             </ul>
           </div>
         </div>
@@ -126,14 +112,14 @@
         </div>
         <div class="row">
           <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
+          <div class="col-md-6 col-lg-4 col-xs-12 ">
             <div class="services-item wow fadeInRight" data-wow-delay="0.3s">
               <div class="icon">
                 <i class="lni-cog"></i>
               </div>
-              <div class="services-content">
-                <h3><a href="#">Easy To Used</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+              <div class="services-content bg-green">
+                <h3><a href="http://www.seprocicam.gob.mx/index.php/transparencia-seproci">Perfil de Transparencia</a></h3>
+                <p>Información de Transparencia de la SEPROCI </p>
               </div>
             </div>
           </div>
@@ -144,8 +130,8 @@
                 <i class="lni-stats-up"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">Awesome Design</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="http://www.seprocicam.gob.mx/index.php/hidrometeorologia/boletin-meteorologico">Perfil del TIEMPO</a></h3>
+                <p>Productos Meteorológicos, Pronosticos Especiales. </p>
               </div>
             </div>
           </div>
@@ -156,8 +142,8 @@
                 <i class="lni-users"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">Easy To Customize</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="http://www.seprocicam.gob.mx/index.php/capacitacion">Perfil de CAPACITACIÓN</a></h3>
+                <p>Cursos y Difusión para la informacion de Protección Civil. </p>
               </div>
             </div>
           </div>
@@ -168,8 +154,8 @@
                 <i class="lni-layers"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">UI/UX Design</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="http://www.seprocicam.gob.mx/">Perfil de PREVENCIÓN</a></h3>
+                <p>Temas de interés general. </p>
               </div>
             </div>
           </div>
@@ -180,8 +166,8 @@
                 <i class="lni-mobile"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">App Development</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="{{ route('login') }}">Perfil de EMERGENCIA</a></h3>
+                <p>Atención de situaciones de emergencias diversas. </p>
               </div>
             </div>
           </div>
@@ -192,8 +178,8 @@
                 <i class="lni-rocket"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">User Friendly interface</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="http://www.seprocicam.gob.mx/index.php/comunicacion-social">Perfil de NOTICIAS</a></h3>
+                <p>Información de las acciones de la SEPROCI. </p>
               </div>
             </div>
           </div>

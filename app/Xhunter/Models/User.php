@@ -4,6 +4,7 @@ namespace Xhunter\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Xhunter\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -45,4 +46,9 @@ class User extends Authenticatable
         return $this->avatar ?: asset('img/avatars/fire-force-prota.jpg');
     }
     #endregion
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }

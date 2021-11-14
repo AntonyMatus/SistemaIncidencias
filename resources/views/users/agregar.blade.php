@@ -31,8 +31,20 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Nombre:</strong>
                     <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" value="{{old('name')}}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Apellidos:</strong>
+                    <input type="text" name="last_name" id="last_name" placeholder="Apellidos" class="form-control" value="{{old('last_name')}}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Nombre de Usuario:</strong>
+                    <input type="text" name="username" id="username" placeholder="Nombre de Usuario" class="form-control" value="{{old('username')}}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

@@ -1,0 +1,62 @@
+
+
+#main-header { 
+    top: -10px;
+     height: 60px;
+    background-color: white; 
+    width: 100%;
+    left: 0;
+    position: fixed;
+      
+ }
+
+ body{
+     
+     padding-top:  110px;
+     height: 890px;
+ }
+
+ footer{
+     
+     padding-top: 890px;
+     position: fixed;
+ }
+
+ #salto_de_linea{
+     display: block;
+     page-break-before: always;
+ }
+
+ label{
+     font-size: 10px;
+     padding-top: 30px
+ }
+ #negritas{
+     font-weight: bold;  
+ }
+ #negritas2{
+    font-weight: bold; 
+    font-size: 12px; 
+}
+
+ table{
+               
+    font-family: arial, sans-serif;
+    font-size: 10px;
+    width: 100%;
+  
+    border:  "2px";
+}
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 3px;
+}
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 3px;
+}
+p{
+    font-size: 10px;
+}

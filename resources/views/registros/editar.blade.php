@@ -48,6 +48,15 @@
                             @empty
                             @endforelse
                         </select>
+                        <br>
+                        <br>
+                    <label for="tipo_servicio" class="form-control-label">{{__('Seleccione el Tipo de Servicio')}} </label>
+                    <label for="tipo_servicio">
+                    <input type="checkbox" name="tipo_servicio" id="tipo_servcio" value="{{old('tipo_servicio', "1")}}"> Servicio Improcedente
+                    </label>
+                    <label for="tipo_servicio">
+                        <input type="checkbox" name="tipo_servicio" id="tipo_servcio" value="{{old('tipo_servicio', "2")}}"> Servicio Procedente
+                        </label>
                     </div>
                 </div>
             </div>
@@ -83,7 +92,20 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="dirección" class="form-control-label">{{__('Direccion')}}</label>
-                        <textarea class="form-control rounded-0" name="dirección" id="dirección" rows="3" value="{{old('dirección')}} " >{{$modelo->dirección}} </textarea>
+                        <br>
+                        <label for="calle" class="form-control-label"> {{__('Calle:')}} </label>
+                        <input type="text" name="calle" id="calle" value="{{old('calle', $modelo->calle)}}"> <br>
+                        <label for="num" class="form-control-label">{{__('Num:')}}</label>
+                        <input type="text" name="num" id="num" value="{{old('num', $modelo->num)}}" ><br>
+                        <label for="entre_calle" class="form-control-label">{{__('Entre Calle:')}}</label>
+                        <input type="text" name="entre_calle" id="entre_calle" value="{{old('entre_calle', $modelo->entre_calle)}}"><br>
+                        <label for="colonia" class="form-control-label">{{__('Colonia')}}</label>
+                        <select class="col-sm-10" name="colonia" id="colonia">
+                            <option selected disabled>---Seleccione una Colonia</option>
+                            @foreach (\Xhunter\Enumerable\Colonias::getAll() as $key => $value)
+                        <option id="colonia" value="{{old('colonia', $key)}}"> <label for="rado_{{$key}}">{{$value}}</label>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

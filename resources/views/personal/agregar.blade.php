@@ -23,16 +23,16 @@
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
-                            <label for="apellido_paterno" class="form-control-label">{{__('Apellido Paterno')}}</label>
-                            <input type="text" class="form-control" name="apellido_paterno" id="apellido_paterno" placeholder="Apellido Paterno" value="{{old('apellido_paterno')}}">
+                            <label for="apellido_paterno" class="form-control-label">{{__('Primer Apellido')}}</label>
+                            <input type="text" class="form-control" name="apellido_paterno" id="apellido_paterno" placeholder="Primer Apellido" value="{{old('apellido_paterno')}}">
                         </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                         <div class="form-group">
-                            <label for="apellido_materno" class="form-control-label">{{__('Apellido Materno')}}</label>
-                            <input type="text" class="form-control" name="apellido_materno" id="apellido_materno" placeholder="Apellido Materno" value="{{old('apellido_materno')}}">
+                            <label for="apellido_materno" class="form-control-label">{{__('Segundo Apellido')}}</label>
+                            <input type="text" class="form-control" name="apellido_materno" id="apellido_materno" placeholder="Segundo Apellido" value="{{old('apellido_materno')}}">
                         </div>
                 </div>
                 <div class="col-md-6">

@@ -13,7 +13,9 @@
         <h2>Registros de Emergencias</h2>
       </div>
       <div class="pull-right">
+        @can('registros.crear')
         <a class="btn btn-block btn-outline-primary" style="display: inline;" href="{{ route('registros.agregar') }}">{{__('Agregar Registro')}}</a>
+        @endcan
         <a href="{{route('dashboard')}}" class="btn btn-info">
           <i class="fa fa-mail-reply"></i>{{__('volver')}}
         </a>
@@ -38,14 +40,20 @@
         <td>{{ $registro->emergencias->tipo_emergencia}}</td>
         <td>{{ $registro->personal->nombre_completo}}</td>
         <td>
+          @can('registros.ver')
          <a class="btn btn-outline-info" href="{{ route('registros.ver', $registro->id)}}">
         <span class="fa fas fa-eye fa-eye-alt"></span>Ver
+        @endcan
+        @can('registros.editar')
           <a class="btn btn-outline-primary" href="{{ route('registros.editar', $registro->id) }}">
             <span class="fa fa-edit"></span>Editar
           </a>
+        @endcan
+        @can('registros.eliminar')
           <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$registro->id}}">
             <span class="fa fa-trash-o"></span>Eliminar
           </a>
+        @endcan
         </td>
       </tr>
       @endforeach

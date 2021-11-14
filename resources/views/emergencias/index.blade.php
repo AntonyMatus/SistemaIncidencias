@@ -14,7 +14,9 @@
         <h2>Emergencias</h2>
       </div>
       <div class="pull-right">
+        @can('emergencias.crear')
         <a class="btn btn-block btn-outline-primary" style="display: inline;" href="{{ route('emergencias.agregar') }}">{{__('Agregar Emergencia')}}</a>
+        @endcan
         <a href="{{route('dashboard')}}" class="btn btn-info"><i class="fa fa-mail-reply"></i>{{__('volver')}}
         </a>
       </div>
@@ -32,12 +34,16 @@
         <td>{{ ++$key }}</td>
         <td>{{ $emergencia->tipo_emergencia }}</td>
         <td>
+          @can('emergencias.editar')
           <a class="btn btn-outline-primary" href="{{ route('emergencias.editar',$emergencia->id) }}">
             <span class="fa fa-edit"></span>Editar
           </a>
+          @endcan
+          @can('emergencias.eliminar')
           <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$emergencia->id}}">
             <span class="fa fa-trash-o"></span>Eliminar
           </a>
+          @endcan
         </td>
       </tr>
       @endforeach

@@ -31,16 +31,30 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Nombre:</strong>
                     <input type="text" name="name" id="name" placeholder="Nombre" class="form-control" value="{{old('name', $user->name)}}">
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Apellidos:</strong>
+                    <input type="text" name="last_name" id="last_name" placeholder="Apellidos" class="form-control" value="{{old('last_name', $user->last_name)}}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Nombre de Usuario:</strong>
+                    <input type="text" name="username" id="username" placeholder="Nombre de Usuario" class="form-control" value="{{old('username', $user->username)}}">
+                </div>
+            </div> 
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Email:</strong>
                     <input type="email" name="email" id="email" placeholder="correo electrónico" class="form-control" value="{{old('email', $user->email)}}">
                 </div>
             </div>
+            
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Role:</strong>

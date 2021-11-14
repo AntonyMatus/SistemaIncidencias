@@ -52,12 +52,11 @@ Breadcrumbs::for('roles.ver', function ($trail, $rolName) {
     $trail->parent('roles');
     $trail->push($rolName);
 });
-
-// Productos
-Breadcrumbs::for('productos', function ($trail) {
+Breadcrumbs::for('reporte', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push('Productos', route('productos.index'));
+    $trail->push('Reporte', route('reporte.index'));
 });
+
 
 //Vehiculos
 Breadcrumbs::for('vehiculos', function ($trail) {

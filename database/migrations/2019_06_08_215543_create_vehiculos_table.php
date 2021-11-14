@@ -16,12 +16,12 @@ class CreateVehiculosTable extends Migration
             $table->increments('id');
             $table->string('imagen', 150);
             $table->string('vehiculo_unidad', 6);
-            $table->string('num_serie', 8);
-            $table->string('inventario', 8);
-            $table->string('no_motor', 8);
-            $table->string('marca', 8);
-            $table->string('modelo', 8);
-            $table->string('placas', 6);
+            $table->string('num_serie', 18);
+            $table->string('inventario', 18);
+            $table->string('no_motor', 18);
+            $table->string('marca', 18);
+            $table->string('modelo', 12);
+            $table->string('placas', 12);
             $table->unsignedTinyInteger('estatus_vehiculo');
             $table->timestamps();
         });

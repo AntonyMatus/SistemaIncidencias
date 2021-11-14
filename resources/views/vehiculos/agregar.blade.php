@@ -119,7 +119,7 @@
                     message: 'La Unidad es un campo requerido.'
                 },
                 stringLength: {
-                    max: 5,
+                    max: 6,
                     message: 'La longitud máxima es de 6 caracteres!'
                 },
                 regexp: {
@@ -149,8 +149,8 @@
                     message: 'El Numero de Serie es un campo requerido.'
                 },
                 stringLength: {
-                    max: 8,
-                    message: 'La longitud máxima es de 8 caracteres!'
+                    max: 18,
+                    message: 'La longitud máxima es de 18 caracteres!'
                 },
                 regexp: {
                     regexp: /^[0-9a-zA-Z]+$/,  
@@ -165,12 +165,12 @@
                     message: 'El inventario es un campo requerido.'
                 },
                 stringLength: {
-                    max: 8,
-                    message: 'La longitud máxima es de 8 caracteres!'
+                    max: 18,
+                    message: 'La longitud máxima es de 18 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[0-9]+$/,  
-                    message:"El Inventario solo permite Numeros"
+                    regexp: /^[-0-9a-zA-Z]+$/,  
+                    message:"El Inventario solo permite Mayusculas y Numeros"
                 }
             }
         },
@@ -180,11 +180,11 @@
                     message: 'El Numero del Motor es un campo requerido.'
                 },
                 stringLength: {
-                    max: 8,
-                    message: 'La longitud máxima es de 8 caracteres!'
+                    max: 18,
+                    message: 'La longitud máxima es de 18 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[0-9a-zA-Z]+$/,  
+                    regexp: /^[-0-9a-zA-Z\s]+$/,  
                     message:"El Numero de Motor solo permite Letras y Numeros"
                 }
             }
@@ -195,11 +195,11 @@
                     message: 'La Marca del Motor es un campo requerido.'
                 },
                 stringLength: {
-                    max: 8,
-                    message: 'La longitud máxima es de 8 caracteres!'
+                    max: 18,
+                    message: 'La longitud máxima es de 18 caracteres!'
                 },
                 regexp: {
-                    regexp: /^[A-Za-z0-9\s]+$/g,  
+                    regexp: /^[-A-Za-z0-9\s]+$/,  
                     message:"La Marca de Motor solo permite Letras, Numeros y Espacios en blanco."
                 }
             }
@@ -210,8 +210,8 @@
                     message: 'El Modelo del vehiculo es un campo requerido.'
                 },
                 stringLength: {
-                    max: 8,
-                    message: 'La longitud máxima es de 8 caracteres!'
+                    max: 12,
+                    message: 'La longitud máxima es de 12 caracteres!'
                 },
                 regexp: {
                     regexp: /^[0-9]+$/,  
@@ -226,8 +226,8 @@
                     message: 'Las Placas del vehiculo es un campo requerido.'
                 },
                 stringLength: {
-                    max: 6,
-                    message: 'La longitud máxima es de 6 caracteres!'
+                    max: 12,
+                    message: 'La longitud máxima es de 12 caracteres!'
                 },
                 regexp: {
                     regexp: /^[A-Z0-9_-]+$/,  

@@ -1,11 +1,24 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    body{
+        background-image: url('../img/código.jpg');
+         background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%; 
+    }
+</style>
+    
+@endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div class="col-md-7">
+            <div class="card bg-light ">
+                <div class="card-header text-center">{{ __('Login') }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src="img/escudo_seprocy.png" alt="escudo" class="justify-content-center" width="250px" height="90px">
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

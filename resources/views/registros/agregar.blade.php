@@ -49,6 +49,15 @@
                             @empty
                             @endforelse
                         </select>
+                            <br>
+                            <br>
+                        <label for="tipo_servicio" class="form-control-label">{{__('Seleccione el Tipo de Servicio')}} </label>
+                        <label for="tipo_servicio">
+                        <input type="checkbox" name="tipo_servicio" id="tipo_servcio" value="{{old('tipo_servicio', "1")}}"> Servicio Improcedente
+                        </label>
+                        <label for="tipo_servicio">
+                            <input type="checkbox" name="tipo_servicio" id="tipo_servcio" value="{{old('tipo_servicio', "2")}}"> Servicio Procedente
+                            </label>
                     </div>
                 </div>
             </div>
@@ -70,7 +79,7 @@
                     <div class="form-group">
                         <label for="emergencia" class="form-control-label">{{__('Emergencia')}}</label>
                         <br>
-                        <textarea class="form-control rounded-0" name="emergencia" id="emergencia" rows="3" value="{{old('emergencia')}}"></textarea>
+                        <textarea class="form-control rounded-0" name="emergencia" id="emergencia" rows="3" value="{{old('emergencia')}}" placeholder="Escribe la emergencia"></textarea>
                     </div>
                 </div>
             </div>
@@ -78,27 +87,40 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="descripción_emergencia" class="form-control-label">{{__('Descripción de la Emergencia')}} </label>
-                    <textarea class="form-control rounded-0" name="descripción_emergencia" id="descripción_emergencia" rows="3" value="{{old('descripción_emergencia')}}"></textarea>
+                    <textarea class="form-control rounded-0" name="descripción_emergencia" id="descripción_emergencia" rows="3" value="{{old('descripción_emergencia')}}" placeholder="Describe la emergencia"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="dirección" class="form-control-label">{{__('Direccion')}}</label>
-                        <textarea class="form-control rounded-0" name="dirección" id="dirección" rows="3" value="{{old('dirección')}} " ></textarea>
+                        <label for="dirección" class="form-control-label">{{__('Direccion')}}</label> <br>
+                        <label for="calle" class="form-control-label"> {{__('Calle:')}} </label>
+                        <input type="text" name="calle" id="calle" value="{{old('calle')}}" placeholder="Escriba la calle"> <br>
+                        <label for="num" class="form-control-label">{{__('Num:')}}</label>
+                        <input type="text" name="num" id="num" value="{{old('num')}}" placeholder="Escriba el Num de Calle"><br>
+                        <label for="entre_calle" class="form-control-label">{{__('Entre Calle:')}}</label>
+                        <input type="text" name="entre_calle" id="entre_calle" value="{{old('entre_calle')}}" placeholder="Numeros entre calle"><br>
+                        <label for="colonia" class="form-control-label">{{__('Colonia')}}</label>
+                       <!-- <input type="text" name="colonia" id="colonia" value="{{old('colonia')}}" placeholder="Escriba la colonia"> -->
+                        <select class="col-sm-10" name="colonia" id="colonia">
+                            <option selected disabled>---Seleccione una Colonia</option>
+                            @foreach (\Xhunter\Enumerable\Colonias::getAll() as $key => $value)
+                        <option value="{{old('colonia', $key)}}"> <label for="rado_{{$key}}">{{$value}}</label>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                    <label for="num_escoltas" class="form-control-label">{{__('Numero de Escoltas')}}</label>
-                    <input type="number" class="form-control" name="num_escoltas" id="num_escoltas" value="{{old('num_escoltas')}}">
+                    <label for="num_escoltas" class="form-control-label">{{__('Número de Escoltas')}}</label>
+                    <input type="number" class="form-control" name="num_escoltas" id="num_escoltas" value="{{old('num_escoltas')}}" placeholder="Número de escoltas">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="personas_atendidas" class="form-control-label">{{__('Numero de Personas Atendidas')}}</label>
-                        <input type="number" class="form-control" name="personas_atendidas" id="personas_atendidas" value="{{old('personas_atendidas')}}">
+                        <label for="personas_atendidas" class="form-control-label">{{__('Número de Personas Atendidas')}}</label>
+                        <input type="number" class="form-control" name="personas_atendidas" id="personas_atendidas" value="{{old('personas_atendidas')}}" placeholder="núm de personas atendidas">
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -186,7 +208,7 @@
                         message: 'La longitud máxima es de 255 caracteres!'
                     },
                     regexp: {
-                        regexp: /^[.,A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]+$/,  
+                        regexp: /^[/.,A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]+$/,  
                         message:"Solo se permiten letras y numeros"
                     }
                 }

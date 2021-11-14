@@ -17,7 +17,9 @@
         <h2>Vehiculos</h2>
       </div>
       <div class="pull-right">
+        @can('vehiculos.crear')
         <a class="btn btn-block btn-outline-primary" style="display: inline;" href="{{ route('vehiculos.agregar') }}">{{__('Agregar Vehiculo')}}</a>
+        @endcan
         <a href="{{route('dashboard')}}" class="btn btn-info">
           <i class="fa fa-mail-reply"></i>{{__('volver')}}
         </a>
@@ -43,16 +45,23 @@
           <p class="card-text"></p>
         </div>
         <div class="card-footer dropdown">
+          @can('vehiculos.ver')
           <a class="btn btn-outline-info" href="{{ route('vehiculos.ver', $vehiculo->id)}}">
             <span class="fa fas fa-eye fa-eye-alt"></span>Ver
           </a>
+          @endcan
+
           <button type="button" class="btn btn-outline-success dropdown-toggle float-right" data-toggle="dropdown">Mas.</button>
           <div class="dropdown-menu">
+            @can('vehiculos.editar')
             <a class="dropdown-item " href="{{route('vehiculos.editar', $vehiculo->id)}}"><span class="fa fa-edit"></span>Editar</a>
+            @endcan
+            @can('vehiculos.eliminar')
             <form method="POST" action="{{route('vehiculos.eliminar',[ 'id' => $vehiculo->id])}}">
               @csrf
               <button class="btn btn-danger btn-block" type="submit" onclick="return confirm('¿Borrar?')">Borrar</button>
               </form>
+            @endcan
           </div>
         </div>
       </div>

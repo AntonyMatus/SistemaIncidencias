@@ -35,9 +35,10 @@ class RegistroController extends Controller
         $unidad = str_replace('[', '', $unidades);
         $unidad = str_replace(']', '', $unidad);
         $sub_estacion =  \Xhunter\Enumerable\SubEstaciones::getSubEstaciones($modelo->sub_estaciones);
+        $colonia = \Xhunter\Enumerable\Colonias::getColonias($modelo->colonia);
         if($modelo !== null)
         {
-            return view()->make('registros.ver', compact('modelo', 'unidad','sub_estacion'));
+            return view()->make('registros.ver', compact('modelo', 'unidad','sub_estacion','colonia'));
         }
         Toastr::error(_i('El registro seleccionado no existe'));
         return redirect()->route('registros.index');

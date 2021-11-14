@@ -20,6 +20,6 @@ class Vehiculo extends Model
 
     public function registro()
     {
-        return $this->belongsToMany(Registro::class,'reportes_unidades');
+        return $this->belongsToMany(Registro::class,'reportes_unidades')->withTimestamps();
     }
 }

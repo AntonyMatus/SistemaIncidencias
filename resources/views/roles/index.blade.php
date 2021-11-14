@@ -14,9 +14,11 @@
             <h2>Gestión de roles</h2>
         </div>
         <div class="pull-right">
+          @can('registros.crear')
             <a class="btn btn-outline-success" style="display: inline;" href="{{ route('roles.agregar') }}">
                 <i class="fa fa-plus"></i>{{__('Agregar Rol')}}
             </a>&nbsp;
+            @endcan
             <a href="{{route('dashboard')}}" class="btn btn-outline-info">
                 <i class="fa fa-mail-reply"></i>{{__('volver')}}
             </a>
@@ -44,15 +46,21 @@
         <td>{{ ++$key }}</td>
         <td>{{ $role->name }}</td>
         <td>
+          @can('registros.ver')
             <a class="btn btn-outline-info" href="{{ route('roles.ver',$role->id) }}">
                 <span class="fa fas fa-eye fa-eye-alt"></span>Ver
             </a>
+          @endcan
+          @can('registros.editar')
             <a class="btn btn-outline-primary" href="{{ route('roles.editar',$role->id) }}">
                 <span class="fa fa-edit"></span>Editar
             </a>
+          @endcan
+          @can('registros.eliminar')
             <a href="javascript:void(0)" class="button btn btn-outline-danger" data-id="{{$role->id}}">
                 <span class="fa fa-trash-o"></span>Eliminar
             </a>
+          @endcan
         </td>
     </tr>
     @endforeach
